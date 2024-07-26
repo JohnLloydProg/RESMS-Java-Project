@@ -9,5 +9,5 @@ package DataFactory;
  * @author acer
  */
 public interface IData {
-
+  void FileVisitor fileAction;
 }
