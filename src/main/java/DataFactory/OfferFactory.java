@@ -1,10 +1,7 @@
 
 package DataFactory;
 
-public abstract class OfferFactory implements DataFactory {
+public interface OfferFactory {
     
-    public Data createData(double discount, String currency, Property currentProperty) {
-        return new Offer(discount, currency, currentProperty);
-    }
-
+    //public Offer createDataFromCSV(String csv);
 }

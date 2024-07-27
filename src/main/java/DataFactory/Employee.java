@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package libs;
+
+package DataFactory;
 
 import java.util.List;
 
-/**
- *
- * @author acer
- */
+
 public class Employee implements IData {
     private String lastName;
     private String firstName;
@@ -17,6 +11,12 @@ public class Employee implements IData {
     private String credentials;
     private String report;
     private List<Transaction> transactions;
+
+    public Employee(String lastName, String firstName, String credentials) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.credentials = credentials;
+    }
 
     public String getLastName() {
         return lastName;
@@ -57,8 +57,8 @@ public class Employee implements IData {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-    
-    
+
+
     
     public String getDetails() {
         return "Name: " + firstName + " " + lastName + "\n" +
@@ -76,4 +76,8 @@ public class Employee implements IData {
             report += transaction.getDetails() + "\n";
         }
     }
+    
+    //    public void fileAction(FileVisitor) {
+    //        
+    //    }
 }

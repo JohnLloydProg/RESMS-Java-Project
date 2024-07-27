@@ -2,21 +2,19 @@
 package DataFactory;
 
 
-public class Offer implements Data {
+public class Offer implements IData {
     
     private double discount;
     private String currency;
     private Property currentProperty;
+    private PaymentMethod paymentMethod;
     
-    public Offer(double discount, String currency, Property currentProperty //, PaymentMethod paymentMethod
-    ) {
+    public Offer(double discount, String currency, Property currentProperty, PaymentMethod paymentMethod) {
         this.discount = discount;
         this.currency = currency;
         this.currentProperty = currentProperty;
-        //this.paymentMethod = paymentMethod;
+        this.paymentMethod = paymentMethod;
     }
-    
-    
     
     public String getDetails() {
         return " " + discount + currency;
@@ -33,5 +31,6 @@ public class Offer implements Data {
     public Property getCurrentProperty() {
         return currentProperty;
     }
+
     
 }

@@ -2,9 +2,13 @@
 package DataFactory;
 
 
-public abstract class ReservationFactory implements DataFactory {
+public class ReservationFactory {
     
-    public Data createData(double price, String dueDate, Buyer buyer) {
+    public Reservation createData(double price, String dueDate, Buyer buyer) {
         return new Reservation(price, dueDate, buyer);
     }
+    
+//    public Reservation createDataFromCSV(String csv) {
+//        
+//    }
 }

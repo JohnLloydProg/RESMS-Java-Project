@@ -2,10 +2,13 @@
 package DataFactory;
 
 
-public class BuyerFactory implements DataFactory {
+public class BuyerFactory {
     
-    @Override
-    public Data createData() {
-        return new Buyer();
+//    public Buyer createDataFromCSV(String csv) {
+//        
+//    }
+    
+    public Buyer createData(String lastName, String firstName) {
+        return new Buyer(lastName, firstName);
     }
 }

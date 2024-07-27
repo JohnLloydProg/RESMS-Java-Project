@@ -1,26 +1,16 @@
 
 package DataFactory;
-import java.lang.reflect.*;
 
-public abstract class TransactionFactory implements DataFactory {
-    public <T extends Transaction> T createTransaction(Class<T> transactionClass, Object... args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor<T> constructor = null;
-        
-        
-        for (Constructor<?> c : transactionClass.getConstructors()) {
-            if (c.getParameterCount() == args.length) {
-                constructor = (Constructor<T>) c;
-                break;
-            }
-        }
-        
-        if (constructor == null) {
-            throw new RuntimeException("No matching constructor found");
-        }
-        
-        
-        T transaction = constructor.newInstance(args);
-        
-        return transaction;
+public class TransactionFactory {
+//    public Transaction createDataFromCSV(String csv) {
+//        
+//    }
+    
+    public Transaction createData(Property property, Buyer buyer, Offer offer) {
+        return new Transaction(property, buyer, offer);
+    }
+    
+    public Transaction createData(Employee employee, Property property, Buyer buyer, Offer offer) {
+        return new Transaction(employee, property, buyer, offer);
     }
 }

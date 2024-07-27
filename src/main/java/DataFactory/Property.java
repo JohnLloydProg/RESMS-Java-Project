@@ -2,7 +2,7 @@
 package DataFactory;
 
 
-public class Property implements Data {
+public class Property implements IData {
     private Buyer owner;
     private int lot;
     private int block;
@@ -29,7 +29,7 @@ public class Property implements Data {
         this.reservation = reservation;
     }
 
-    public Property(Buyer owner, int lot, int block, double SRP, double size, String description, Reservation reservation, int id) {
+    public Property(Buyer owner, int lot, int block, double SRP, double size, String description, Reservation reservation) {
         this.owner = owner;
         this.lot = lot;
         this.block = block;

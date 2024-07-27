@@ -1,26 +1,21 @@
 
 package DataFactory;
-import java.lang.reflect.*;
 
-public abstract class PropertyFactory implements DataFactory {
+public class PropertyFactory {
     
-    public <T extends Property> T createProperty(Class<T> propertyClass, Object... args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor<T> constructor = null;
-        
-        
-        for (Constructor<?> c : propertyClass.getConstructors()) {
-            if (c.getParameterCount() == args.length) {
-                constructor = (Constructor<T>) c;
-                break;
-            }
-        }
-        
-        if (constructor == null) {
-            throw new RuntimeException("No matching constructor found");
-        }
-        
-        T property = constructor.newInstance(args);
-        
-        return property;
-    }
+//    public Property createDataFromCSV(String csv) {
+//        
+//    }
+    
+      public Property createData(int lot, int block, double SRP, double size, String description) {
+          return new Property(lot, block, SRP, size, description);
+      }
+      
+      public Property createData(int lot, int block, double SRP, double size, String description, Reservation reservation) {
+          return new Property(lot, block, SRP, size, description, reservation);
+      }
+      
+      public Property createData(Buyer owner, int lot, int block, double SRP, double size, String description, Reservation reservation) {
+          return new Property(owner, lot, block, SRP, size, description, reservation);
+      }
 }

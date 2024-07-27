@@ -2,7 +2,7 @@
 package DataFactory;
 
 
-public class Reservation implements Data {
+public class Reservation implements IData {
     
     private double price;
     private String dueDate;

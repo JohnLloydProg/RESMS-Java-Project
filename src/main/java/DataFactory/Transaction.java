@@ -1,8 +1,8 @@
 
 package DataFactory;
 
-public class Transaction implements Data {
-    //private Agent agent;
+public class Transaction implements IData {
+    private Employee employee;
     private Property property;
     private Buyer buyer;
     private Offer offer;
@@ -13,12 +13,12 @@ public class Transaction implements Data {
         this.offer = offer;
     }
     
-//    public Transaction(Agent agent, Property property, Buyer buyer, Offer offer) {
-//        this.agent = agent;
-//        this.property = property;
-//        this.buyer = buyer;
-//        this.offer = offer;
-//    }
+    public Transaction(Employee employee, Property property, Buyer buyer, Offer offer) {
+        this.employee = employee;
+        this.property = property;
+        this.buyer = buyer;
+        this.offer = offer;
+    }
     
     public String getDetails() {
         return "" + //agent + 
