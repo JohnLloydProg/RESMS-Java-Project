@@ -14,6 +14,7 @@ public class Employee implements IData {
     private String firstName;
     private int id;
     private String credentials;
+    private String password;
 
     public Employee(String lastName, String firstName, String credentials) {
         this.lastName = lastName;
@@ -27,6 +28,23 @@ public class Employee implements IData {
 
     public String getFirstName() {
         return firstName;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getPassword() {
+        return this.password;
+    }
+    
+    public String getUserName() {
+        String userName = "";
+        for (String firstNames : this.firstName.split(" ")) {
+            userName += firstNames.substring(0, 0);
+        }
+        userName += this.lastName;
+        return userName;
     }
 
     public String getId() {
@@ -60,7 +78,7 @@ public class Employee implements IData {
     
     @Override
     public String toCSV() {
-        return (this.getId() + "," + this.lastName + "," + this.firstName + "," + this.credentials);
+        return (this.getId() + "," + this.lastName + "," + this.firstName + "," + this.credentials + "," + this.password);
     }
     
     @Override
