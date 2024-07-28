@@ -427,7 +427,7 @@ public class GradientPanel extends JPanel {
         BuyerLabel.setText("Buyer");
         OfferDetailsForm.add(BuyerLabel);
 
-        Buyer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Philippine Peso", "US Dollar" }));
+        Buyer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "John Doe" }));
         Buyer.setPreferredSize(new java.awt.Dimension(455, 35));
         OfferDetailsForm.add(Buyer);
 
