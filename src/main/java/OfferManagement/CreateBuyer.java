@@ -70,8 +70,6 @@ public class GradientPanel extends JPanel {
         FirstName = new javax.swing.JTextField();
         LastNameLabel = new javax.swing.JLabel();
         LastName = new javax.swing.JTextField();
-        BuyerIDLabel = new javax.swing.JLabel();
-        BuyerID = new javax.swing.JTextField();
         SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -247,20 +245,6 @@ public class GradientPanel extends JPanel {
         });
         BuyerInfoForm.add(LastName);
 
-        BuyerIDLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        BuyerIDLabel.setText("Buyer ID");
-        BuyerIDLabel.setPreferredSize(new java.awt.Dimension(1070, 35));
-        BuyerInfoForm.add(BuyerIDLabel);
-
-        BuyerID.setMinimumSize(new java.awt.Dimension(500, 22));
-        BuyerID.setPreferredSize(new java.awt.Dimension(1070, 35));
-        BuyerID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuyerIDActionPerformed(evt);
-            }
-        });
-        BuyerInfoForm.add(BuyerID);
-
         BuyerInfo.add(BuyerInfoForm);
 
         SaveButton.setBackground(new java.awt.Color(36, 79, 99));
@@ -357,10 +341,6 @@ public class GradientPanel extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_FirstNameActionPerformed
 
-    private void BuyerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BuyerIDActionPerformed
-
     private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameActionPerformed
@@ -422,8 +402,6 @@ public class GradientPanel extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Arrow;
     private javax.swing.JLabel Ascend;
-    private javax.swing.JTextField BuyerID;
-    private javax.swing.JLabel BuyerIDLabel;
     private javax.swing.JPanel BuyerInfo;
     private javax.swing.JPanel BuyerInfoBox;
     private javax.swing.JPanel BuyerInfoForm;
