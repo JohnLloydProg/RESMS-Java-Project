@@ -1,6 +1,5 @@
 B-0,Unida,John Lloyd
 B-1,Cruz,Gabriel
-B-4,Relacion,Egvert
-B-6,Audrize,Cruz
-B-8,Shem,Keane
-B-9,Avila,Lance Gabriel
+B-2,Relacion,Egvert
+B-3,Shem,Keane
+B-4,Avila,Lance Gabriel
