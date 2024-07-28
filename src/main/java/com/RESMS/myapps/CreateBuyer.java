@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.RESMS.OfferManagement;
+package com.RESMS.myapps;
 
 import com.RESMS.libs.fileSystem.Add;
 import com.RESMS.libs.object.Buyer;
@@ -76,7 +76,7 @@ public class GradientPanel extends JPanel {
         SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CreateBuyer");
+        setTitle("RESMS | ASCEND - Create Buyer");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);

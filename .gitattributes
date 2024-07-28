@@ -1,0 +1,15 @@
+# Ensure .gitattributes itself has LF line endings
+.gitattributes text eol=lf
+
+# Auto-detect text files and normalize line endings to LF
+* text=auto
+
+# Ensure Java files have LF line endings
+*.java text eol=lf
+*.form text eol=lf
+
+# Ensure shell scripts have LF line endings
+*.sh text eol=lf
+
+# Ensure batch files have CRLF line endings
+*.bat text eol=crlf

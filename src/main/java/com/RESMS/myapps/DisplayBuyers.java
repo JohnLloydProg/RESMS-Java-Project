@@ -2,19 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.RESMS.OfferManagement;
+package com.RESMS.myapps;
 
+import com.RESMS.libs.fileSystem.Delete;
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Audrize Cruz
  */
-public class DisplayOffers extends javax.swing.JFrame {
+public class DisplayBuyers extends javax.swing.JFrame {
 
 public class GradientPanel extends JPanel {
 
@@ -35,8 +40,27 @@ public class GradientPanel extends JPanel {
         g2d.dispose();
     }
 }
-    public DisplayOffers() {
+public void populateTable(){ 
+        ArrayList<Buyer> Buyers = Read.getBuyers(); 
+        String columns[] = {"Buyer ID","First Name","Last Name"}; 
+        String data[][] = new String[Buyers.size()][3]; 
+        for(int i =0; i < Buyers.size(); i++){ 
+            data[i][0] = Buyers.get(i).getId(); 
+            data[i][1] = Buyers.get(i).getFirstName(); 
+            data[i][2] = Buyers.get(i).getLastName(); 
+        } 
+        DefaultTableModel model = new DefaultTableModel(data,columns) {
+        @Override    
+            public boolean isCellEditable(int row, int column) {
+            //all cells false       
+            return false;
+            }
+        };
+        BuyersTable.setModel(model); 
+    }
+    public DisplayBuyers() {
         initComponents();
+        populateTable();
     }
 
     /**
@@ -49,27 +73,27 @@ public class GradientPanel extends JPanel {
     private void initComponents() {
 
         DashboardBackground = new javax.swing.JPanel();
-        ListOfOffers = new javax.swing.JLabel();
+        ListOfBuyers = new javax.swing.JLabel();
         Arrow = new javax.swing.JLabel();
-        RejectButton = new javax.swing.JButton();
-        AcceptButton = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
+        CreateButton = new javax.swing.JButton();
         Menu = new GradientPanel();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 40), new java.awt.Dimension(200, 200));
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Ascend = new javax.swing.JLabel();
+        PropertiesLabel = new javax.swing.JLabel();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 10), new java.awt.Dimension(200, 200));
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 2), new java.awt.Dimension(200, 200));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 10), new java.awt.Dimension(200, 200));
         MenuButton = new javax.swing.JButton();
         ManageBuyerButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
-        OfferInfo = new javax.swing.JPanel();
-        OfferInfoText = new javax.swing.JLabel();
-        OfferList = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        BuyerInfo = new javax.swing.JPanel();
+        BuyerInfoLabel = new javax.swing.JLabel();
+        BuyerList = new javax.swing.JScrollPane();
+        BuyersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("DisplayOffers");
+        setTitle("RESMS | ASCEND - Display Buyers");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
@@ -77,35 +101,40 @@ public class GradientPanel extends JPanel {
 
         DashboardBackground.setBackground(new java.awt.Color(255, 255, 255));
 
-        ListOfOffers.setFont(new java.awt.Font("Segoe UI", 1, 64)); // NOI18N
-        ListOfOffers.setForeground(new java.awt.Color(2, 48, 71));
-        ListOfOffers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/angle-small-right.png"))); // NOI18N
-        ListOfOffers.setIconTextGap(7);
+        ListOfBuyers.setFont(new java.awt.Font("Segoe UI", 1, 64)); // NOI18N
+        ListOfBuyers.setForeground(new java.awt.Color(2, 48, 71));
+        ListOfBuyers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/angle-small-right.png"))); // NOI18N
+        ListOfBuyers.setIconTextGap(7);
 
         Arrow.setFont(new java.awt.Font("Segoe UI", 1, 64)); // NOI18N
         Arrow.setForeground(new java.awt.Color(2, 48, 71));
-        Arrow.setText("List of Offers");
+        Arrow.setText("List of Buyers");
         Arrow.setIconTextGap(7);
 
-        RejectButton.setBackground(new java.awt.Color(36, 79, 99));
-        RejectButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        RejectButton.setForeground(new java.awt.Color(255, 255, 255));
-        RejectButton.setText("REJECT");
-        RejectButton.setBorder(null);
-        RejectButton.addActionListener(new java.awt.event.ActionListener() {
+        DeleteButton.setBackground(new java.awt.Color(36, 79, 99));
+        DeleteButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteButton.setText("DELETE");
+        DeleteButton.setBorder(null);
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RejectButtonActionPerformed(evt);
+                DeleteButtonActionPerformed(evt);
             }
         });
 
-        AcceptButton.setBackground(new java.awt.Color(36, 79, 99));
-        AcceptButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        AcceptButton.setForeground(new java.awt.Color(255, 255, 255));
-        AcceptButton.setText("ACCEPT");
-        AcceptButton.setBorder(null);
-        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+        CreateButton.setBackground(new java.awt.Color(36, 79, 99));
+        CreateButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CreateButton.setForeground(new java.awt.Color(255, 255, 255));
+        CreateButton.setText("CREATE");
+        CreateButton.setBorder(null);
+        CreateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptButtonActionPerformed(evt);
+                CreateButtonActionPerformed(evt);
+            }
+        });
+        CreateButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CreateButtonKeyPressed(evt);
             }
         });
 
@@ -115,20 +144,20 @@ public class GradientPanel extends JPanel {
         Menu.setPreferredSize(new java.awt.Dimension(379, 1024));
         Menu.add(filler4);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Variable", 1, 55)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-chimney.png"))); // NOI18N
-        jLabel3.setText("ASCEND");
-        jLabel3.setIconTextGap(15);
-        Menu.add(jLabel3);
+        Ascend.setFont(new java.awt.Font("Segoe UI Variable", 1, 55)); // NOI18N
+        Ascend.setForeground(new java.awt.Color(255, 255, 255));
+        Ascend.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Ascend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-chimney.png"))); // NOI18N
+        Ascend.setText("ASCEND");
+        Ascend.setIconTextGap(15);
+        Menu.add(Ascend);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("PROPERTIES");
-        jLabel5.setIconTextGap(15);
-        Menu.add(jLabel5);
+        PropertiesLabel.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        PropertiesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PropertiesLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        PropertiesLabel.setText("PROPERTIES");
+        PropertiesLabel.setIconTextGap(15);
+        Menu.add(PropertiesLabel);
         Menu.add(filler7);
 
         filler5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -189,21 +218,21 @@ public class GradientPanel extends JPanel {
         Menu.add(ManageBuyerButton);
         Menu.add(filler1);
 
-        OfferInfo.setBackground(new java.awt.Color(241, 241, 241));
-        OfferInfo.setMaximumSize(new java.awt.Dimension(700, 700));
-        OfferInfo.setMinimumSize(new java.awt.Dimension(700, 700));
-        OfferInfo.setName(""); // NOI18N
-        OfferInfo.setPreferredSize(new java.awt.Dimension(700, 700));
+        BuyerInfo.setBackground(new java.awt.Color(241, 241, 241));
+        BuyerInfo.setMaximumSize(new java.awt.Dimension(700, 700));
+        BuyerInfo.setMinimumSize(new java.awt.Dimension(700, 700));
+        BuyerInfo.setName(""); // NOI18N
+        BuyerInfo.setPreferredSize(new java.awt.Dimension(700, 700));
 
-        OfferInfoText.setBackground(new java.awt.Color(255, 255, 255));
-        OfferInfoText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        OfferInfoText.setForeground(new java.awt.Color(2, 48, 71));
-        OfferInfoText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        OfferInfoText.setText("Offer Information");
-        OfferInfoText.setFocusable(false);
-        OfferInfoText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BuyerInfoLabel.setBackground(new java.awt.Color(255, 255, 255));
+        BuyerInfoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BuyerInfoLabel.setForeground(new java.awt.Color(2, 48, 71));
+        BuyerInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BuyerInfoLabel.setText("Buyer Information");
+        BuyerInfoLabel.setFocusable(false);
+        BuyerInfoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        BuyersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -211,7 +240,7 @@ public class GradientPanel extends JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Buyer", "Property", "Payment Method"
+                "Buyer ID", "First Name", "Last Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -229,34 +258,34 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setColumnSelectionAllowed(true);
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        OfferList.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
+        BuyersTable.setToolTipText("");
+        BuyersTable.setGridColor(new java.awt.Color(255, 255, 255));
+        BuyersTable.getTableHeader().setReorderingAllowed(false);
+        BuyerList.setViewportView(BuyersTable);
+        BuyersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (BuyersTable.getColumnModel().getColumnCount() > 0) {
+            BuyersTable.getColumnModel().getColumn(0).setResizable(false);
+            BuyersTable.getColumnModel().getColumn(1).setResizable(false);
+            BuyersTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        javax.swing.GroupLayout OfferInfoLayout = new javax.swing.GroupLayout(OfferInfo);
-        OfferInfo.setLayout(OfferInfoLayout);
-        OfferInfoLayout.setHorizontalGroup(
-            OfferInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(OfferList)
-            .addGroup(OfferInfoLayout.createSequentialGroup()
+        javax.swing.GroupLayout BuyerInfoLayout = new javax.swing.GroupLayout(BuyerInfo);
+        BuyerInfo.setLayout(BuyerInfoLayout);
+        BuyerInfoLayout.setHorizontalGroup(
+            BuyerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BuyerList)
+            .addGroup(BuyerInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(OfferInfoText, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BuyerInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(227, Short.MAX_VALUE))
         );
-        OfferInfoLayout.setVerticalGroup(
-            OfferInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OfferInfoLayout.createSequentialGroup()
+        BuyerInfoLayout.setVerticalGroup(
+            BuyerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BuyerInfoLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(OfferInfoText)
+                .addComponent(BuyerInfoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OfferList, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BuyerList, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -270,17 +299,17 @@ public class GradientPanel extends JPanel {
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OfferInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                                 .addComponent(Arrow)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ListOfOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 55, Short.MAX_VALUE))
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 465, Short.MAX_VALUE))
         );
         DashboardBackgroundLayout.setVerticalGroup(
             DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,16 +318,16 @@ public class GradientPanel extends JPanel {
                 .addGap(61, 61, 61)
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Arrow)
-                    .addComponent(ListOfOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(OfferInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addGap(632, 632, 632)
                         .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -333,9 +362,7 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_MenuButtonMouseEntered
 
     private void ManageBuyerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageBuyerButtonActionPerformed
-        DisplayBuyers newForm = new DisplayBuyers(); 
-        newForm.setVisible(true);
-        dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_ManageBuyerButtonActionPerformed
 
     private void ManageBuyerButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageBuyerButtonMouseExited
@@ -347,13 +374,27 @@ public class GradientPanel extends JPanel {
        this.ManageBuyerButton.setContentAreaFilled(true);
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
-    private void RejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RejectButtonActionPerformed
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        int column = 0;
+        int row = BuyersTable.getSelectedRow();
+        String value = BuyersTable.getModel().getValueAt(row, column).toString();
+        String id = value.replaceAll("[^0-9]", ""); // regular expression
+        // Replace all the letters
+        Delete deleteAction = new Delete();
+        Buyer toBeDeleted = Read.getBuyer(Integer.valueOf(id));
+        deleteAction.item(toBeDeleted);
+        populateTable();
+    }//GEN-LAST:event_DeleteButtonActionPerformed
 
-    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AcceptButtonActionPerformed
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+        CreateBuyer newForm = new CreateBuyer(); 
+        newForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void CreateButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CreateButtonKeyPressed
+
+    }//GEN-LAST:event_CreateButtonKeyPressed
 
     /**
      * @param args the command line arguments
@@ -372,14 +413,18 @@ public class GradientPanel extends JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayOffers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayBuyers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayOffers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayBuyers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayOffers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayBuyers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayOffers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayBuyers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -388,30 +433,30 @@ public class GradientPanel extends JPanel {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisplayOffers().setVisible(true);
+                new DisplayBuyers().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AcceptButton;
     private javax.swing.JLabel Arrow;
+    private javax.swing.JLabel Ascend;
+    private javax.swing.JPanel BuyerInfo;
+    private javax.swing.JLabel BuyerInfoLabel;
+    private javax.swing.JScrollPane BuyerList;
+    private javax.swing.JTable BuyersTable;
+    private javax.swing.JButton CreateButton;
     private javax.swing.JPanel DashboardBackground;
-    private javax.swing.JLabel ListOfOffers;
+    private javax.swing.JButton DeleteButton;
+    private javax.swing.JLabel ListOfBuyers;
     private javax.swing.JButton ManageBuyerButton;
     private javax.swing.JPanel Menu;
     private javax.swing.JButton MenuButton;
-    private javax.swing.JPanel OfferInfo;
-    private javax.swing.JLabel OfferInfoText;
-    private javax.swing.JScrollPane OfferList;
-    private javax.swing.JButton RejectButton;
+    private javax.swing.JLabel PropertiesLabel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
