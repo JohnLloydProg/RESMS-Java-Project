@@ -13,7 +13,6 @@ import com.RESMS.libs.object.Cash;
 import com.RESMS.libs.object.Offer;
 import com.RESMS.libs.object.PaymentMethod;
 import com.RESMS.libs.object.Transaction;
-import com.unida.mylibs.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;

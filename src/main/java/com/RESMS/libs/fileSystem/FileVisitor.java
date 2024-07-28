@@ -10,7 +10,6 @@ import com.RESMS.libs.object.Reservation;
 import com.RESMS.libs.object.Property;
 import com.RESMS.libs.object.Offer;
 import com.RESMS.libs.object.Transaction;
-import com.unida.mylibs.*;
 /**
  *
  * @author JohnLloydProg

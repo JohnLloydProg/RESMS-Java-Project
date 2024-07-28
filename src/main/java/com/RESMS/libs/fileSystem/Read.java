@@ -21,7 +21,6 @@ import com.RESMS.libs.factory.CashFactory;
 import com.RESMS.libs.factory.InstallmentFactory;
 import com.RESMS.libs.factory.PropertyFactory;
 import com.RESMS.libs.factory.ReservationFactory;
-import com.unida.mylibs.*;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
