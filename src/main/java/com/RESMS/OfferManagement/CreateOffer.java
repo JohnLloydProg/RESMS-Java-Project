@@ -102,6 +102,7 @@ public class GradientPanel extends JPanel {
         PaymentMethod = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CreaterOffer");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
