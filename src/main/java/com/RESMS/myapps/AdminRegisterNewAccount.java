@@ -78,7 +78,7 @@ public class AdminRegisterNewAccount extends javax.swing.JFrame {
         SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Register New Account");
+        setTitle("RESMS | ASCEND - Register New Account");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1600, 900));

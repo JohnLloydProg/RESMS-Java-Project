@@ -76,7 +76,7 @@ public class GradientPanel extends JPanel {
         SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CreateBuyer");
+        setTitle("RESMS | ASCEND - Create Buyer");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);

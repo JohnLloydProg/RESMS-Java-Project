@@ -69,7 +69,7 @@ public class GradientPanel extends JPanel {
         jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("DisplayOffers");
+        setTitle("RESMS | ASCEND - Display Offers");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);

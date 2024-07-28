@@ -62,7 +62,7 @@ public class AdminMain extends javax.swing.JFrame {
         GenerateReportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Admin Main Page");
+        setTitle("RESMS | ASCEND - Main Page");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
