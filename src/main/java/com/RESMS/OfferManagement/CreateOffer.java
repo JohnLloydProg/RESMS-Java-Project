@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package OfferManagement;
+package com.RESMS.OfferManagement;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -102,6 +102,7 @@ public class GradientPanel extends JPanel {
         PaymentMethod = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CreaterOffer");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
@@ -427,7 +428,7 @@ public class GradientPanel extends JPanel {
         BuyerLabel.setText("Buyer");
         OfferDetailsForm.add(BuyerLabel);
 
-        Buyer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Philippine Peso", "US Dollar" }));
+        Buyer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "John Doe" }));
         Buyer.setPreferredSize(new java.awt.Dimension(455, 35));
         OfferDetailsForm.add(Buyer);
 
