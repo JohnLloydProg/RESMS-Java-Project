@@ -4,11 +4,16 @@
  */
 package com.RESMS.OfferManagement;
 
+import com.RESMS.libs.fileSystem.Delete;
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,8 +40,27 @@ public class GradientPanel extends JPanel {
         g2d.dispose();
     }
 }
+public void populateTable(){ 
+        ArrayList<Buyer> Buyers = Read.getBuyers(); 
+        String columns[] = {"Buyer ID","First Name","Last Name"}; 
+        String data[][] = new String[Buyers.size()][3]; 
+        for(int i =0; i < Buyers.size(); i++){ 
+            data[i][0] = Buyers.get(i).getId(); 
+            data[i][1] = Buyers.get(i).getFirstName(); 
+            data[i][2] = Buyers.get(i).getLastName(); 
+        } 
+        DefaultTableModel model = new DefaultTableModel(data,columns) {
+        @Override    
+            public boolean isCellEditable(int row, int column) {
+            //all cells false       
+            return false;
+            }
+        };
+        BuyersTable.setModel(model); 
+    }
     public DisplayBuyers() {
         initComponents();
+        populateTable();
     }
 
     /**
@@ -66,7 +90,7 @@ public class GradientPanel extends JPanel {
         BuyerInfo = new javax.swing.JPanel();
         BuyerInfoLabel = new javax.swing.JLabel();
         BuyerList = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        BuyersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DisplayBuyers");
@@ -208,7 +232,7 @@ public class GradientPanel extends JPanel {
         BuyerInfoLabel.setFocusable(false);
         BuyerInfoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        BuyersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -234,15 +258,17 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setColumnSelectionAllowed(true);
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        BuyerList.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
+        BuyersTable.setToolTipText("");
+        BuyersTable.setCellSelectionEnabled(false);
+        BuyersTable.setGridColor(new java.awt.Color(255, 255, 255));
+        BuyersTable.setRowSelectionAllowed(true);
+        BuyersTable.getTableHeader().setReorderingAllowed(false);
+        BuyerList.setViewportView(BuyersTable);
+        BuyersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (BuyersTable.getColumnModel().getColumnCount() > 0) {
+            BuyersTable.getColumnModel().getColumn(0).setResizable(false);
+            BuyersTable.getColumnModel().getColumn(1).setResizable(false);
+            BuyersTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         javax.swing.GroupLayout BuyerInfoLayout = new javax.swing.GroupLayout(BuyerInfo);
@@ -351,7 +377,15 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // TODO add your handling code here:
+        int column = 0;
+        int row = BuyersTable.getSelectedRow();
+        String value = BuyersTable.getModel().getValueAt(row, column).toString();
+        String id = value.replaceAll("[^0-9]", ""); // regular expression
+        // Replace all the letters
+        Delete deleteAction = new Delete();
+        Buyer toBeDeleted = Read.getBuyer(Integer.valueOf(id));
+        deleteAction.item(toBeDeleted);
+        populateTable();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
@@ -412,6 +446,7 @@ public class GradientPanel extends JPanel {
     private javax.swing.JPanel BuyerInfo;
     private javax.swing.JLabel BuyerInfoLabel;
     private javax.swing.JScrollPane BuyerList;
+    private javax.swing.JTable BuyersTable;
     private javax.swing.JButton CreateButton;
     private javax.swing.JPanel DashboardBackground;
     private javax.swing.JButton DeleteButton;
@@ -425,6 +460,5 @@ public class GradientPanel extends JPanel {
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

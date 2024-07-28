@@ -4,6 +4,8 @@
  */
 package com.RESMS.OfferManagement;
 
+import com.RESMS.libs.fileSystem.Add;
+import com.RESMS.libs.object.Buyer;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -70,6 +72,7 @@ public class GradientPanel extends JPanel {
         FirstName = new javax.swing.JTextField();
         LastNameLabel = new javax.swing.JLabel();
         LastName = new javax.swing.JTextField();
+        NotificationLabel = new javax.swing.JLabel();
         SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -246,6 +249,10 @@ public class GradientPanel extends JPanel {
         });
         BuyerInfoForm.add(LastName);
 
+        NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setPreferredSize(new java.awt.Dimension(1070, 35));
+        BuyerInfoForm.add(NotificationLabel);
+
         BuyerInfo.add(BuyerInfoForm);
 
         SaveButton.setBackground(new java.awt.Color(36, 79, 99));
@@ -347,7 +354,16 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_LastNameActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        // TODO add your handling code here:
+        if (FirstName.getText().equals("")||LastName.getText().equals("")){
+            NotificationLabel.setText("Fill out all Fields!");
+        }else{
+            String fName = FirstName.getText();
+            String lName = LastName.getText();
+            Buyer newBuyer = new Buyer(lName, fName);
+            Add addAction = new Add();
+            newBuyer.fileAction(addAction);
+            NotificationLabel.setText("Buyer added successfully!");
+        }
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     /**
@@ -416,6 +432,7 @@ public class GradientPanel extends JPanel {
     private javax.swing.JButton ManageBuyerButton;
     private javax.swing.JPanel Menu;
     private javax.swing.JButton MenuButton;
+    private javax.swing.JLabel NotificationLabel;
     private javax.swing.JLabel PropertiesLabel;
     private javax.swing.JButton SaveButton;
     private javax.swing.Box.Filler filler1;
