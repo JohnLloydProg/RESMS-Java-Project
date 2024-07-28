@@ -27,7 +27,7 @@ public class Buyer implements IData {
         return firstName;
     }
     
-    public void setFirtName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 

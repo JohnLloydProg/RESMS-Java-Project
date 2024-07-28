@@ -4,10 +4,15 @@
  */
 package com.RESMS.myapps;
 
+import com.RESMS.libs.fileSystem.Add;
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
+import com.RESMS.libs.object.Reservation;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -34,11 +39,11 @@ public class CreateReservation extends javax.swing.JFrame {
 
         g2d.dispose();
         }   
-    }
+    }    
     public CreateReservation() {
         initComponents();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -392,7 +397,6 @@ public class CreateReservation extends javax.swing.JFrame {
 
     private void BuyerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerComboBoxActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_BuyerComboBoxActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
