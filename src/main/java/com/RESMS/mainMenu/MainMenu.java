@@ -22,10 +22,11 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(255, 255, 255));
         this.jPanel1.setLayout(null);
+        System.out.println("Adding properties");
         initPropertiesButton(Read.getProperties());
     }
     
-    public void initPropertiesButton(ArrayList<Property> properties) {
+    private void initPropertiesButton(ArrayList<Property> properties) {
         PropertyButton button;
         int block = 0;
         boolean adding = true;
@@ -33,7 +34,7 @@ public class MainMenu extends javax.swing.JFrame {
             for (int j = 0; j < 2; j++) {
                 for (int i = 0; i < 10; i++) {
                     if (!properties.isEmpty()) {
-                        button = new PropertyButton(properties.get(i + (10 * j) + (20 * block)));
+                        button = new PropertyButton(properties.get(0));
                         this.jPanel1.add(button);
                         button.setSize(55, 55);
                         button.setFont(new java.awt.Font("Inter_FXH", 0, 10));
@@ -41,8 +42,7 @@ public class MainMenu extends javax.swing.JFrame {
                         button.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
                             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                PropertyButton myButton = (PropertyButton)evt.getSource();
-                                System.out.println(myButton.getProperty());
+                                propertyBtnClicked(evt);
                             }
                         });
                         properties.removeFirst();
@@ -52,6 +52,13 @@ public class MainMenu extends javax.swing.JFrame {
                 }
             }
             block++;
+        }
+    }
+    
+    public void filterProperties(Filter filter) {
+        for (java.awt.Component component : this.jPanel1.getComponents()) {
+            PropertyButton button = (PropertyButton) component;
+            button.checkFilter(filter);
         }
     }
 
@@ -67,12 +74,14 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        filterBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        offerBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new GradientComponent();
-        jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        reportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -98,11 +107,16 @@ public class MainMenu extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        jButton1.setBackground(new java.awt.Color(142, 202, 230));
-        jButton1.setFont(new java.awt.Font("Inter_FXH", 0, 18)); // NOI18N
-        jButton1.setLabel("Filter");
+        filterBtn.setBackground(new java.awt.Color(142, 202, 230));
+        filterBtn.setFont(new java.awt.Font("Inter_FXH", 0, 18)); // NOI18N
+        filterBtn.setLabel("Filter");
+        filterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterBtnMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Inter_FXH", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 48, 71));
         jLabel2.setText("Display of Properties");
 
@@ -117,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
@@ -125,35 +139,55 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(142, 202, 230));
-        jButton2.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
-        jButton2.setText("Offer Management");
+        offerBtn.setBackground(new java.awt.Color(142, 202, 230));
+        offerBtn.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
+        offerBtn.setText("Offer Management");
 
         jLabel1.setFont(new java.awt.Font("Inter_FXH", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 48, 71));
         jLabel1.setText("Properties");
 
+        jButton1.setBackground(new java.awt.Color(33, 158, 188));
+        jButton1.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Main Menu");
+
+        jButton2.setBackground(new java.awt.Color(33, 158, 188));
+        jButton2.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Manage Buyers");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(142, 202, 230));
-        jButton3.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
-        jButton3.setText("Generate Report");
+        reportBtn.setBackground(new java.awt.Color(142, 202, 230));
+        reportBtn.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
+        reportBtn.setText("Generate Report");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,14 +195,14 @@ public class MainMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton2)
+                            .addComponent(offerBtn)
                             .addGap(83, 83, 83)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
@@ -182,14 +216,32 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(offerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void filterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterBtnMouseClicked
+        FilterProperties filterForm = new FilterProperties(this);
+        filterForm.setVisible(true);
+    }//GEN-LAST:event_filterBtnMouseClicked
+    
+    private void propertyBtnClicked(java.awt.event.MouseEvent evt) {
+        PropertyButton myButton = (PropertyButton)evt.getSource();
+        Property property = myButton.getProperty();
+        if (property.getReservation() != null) {
+            new PropertyDisplay_Reserved(property).setVisible(true);
+        }else if (property.getOwner() != null) {
+            new PropertyDisplay_Sold(property).setVisible(true);
+        }else {
+            new PropertyDisplay_Available(property).setVisible(true);
+        }
+        this.setVisible(false);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -226,14 +278,16 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton filterBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton offerBtn;
+    private javax.swing.JButton reportBtn;
     // End of variables declaration//GEN-END:variables
 }

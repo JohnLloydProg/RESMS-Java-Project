@@ -12,15 +12,17 @@ public class Installment implements PaymentMethod {
     private double totalAmount;
     private double downPayment;
     private double interest;
-    private int numberOfYears;
+    private int numberOfPayments;
     private double finalPrice;
     private int id;
 
-    public Installment(double totalAmount, double downPayment, double interest, int numberOfYears) {
+    public Installment(double totalAmount, double downPayment, double interest, int numberOfPayments) {
         this.totalAmount = totalAmount;
         this.downPayment = downPayment;
         this.interest = interest;
-        this.numberOfYears = numberOfYears;
+        this.numberOfPayments = numberOfPayments;
+        double equalMonthlyInstallment = (totalAmount - downPayment) * (Math.pow(1 + interest, numberOfPayments)/(Math.pow(1 + interest, numberOfPayments) - 1));
+        this.finalPrice = downPayment + (equalMonthlyInstallment * numberOfPayments);
     }
     
     @Override
@@ -35,16 +37,16 @@ public class Installment implements PaymentMethod {
     
     @Override
     public String toCSV() {
-        return (this.getId() + "," + this.totalAmount + "," + this.downPayment + "," + this.interest + "," + this.numberOfYears);
+        return (this.getId() + "," + this.totalAmount + "," + this.downPayment + "," + this.interest + "," + this.numberOfPayments);
     }
 
     @Override
     public String getPaymentDetails() {
-        return "Installment payment of $" + totalAmount + " with down payment of $" + downPayment + " and interest rate of " + interest + "% over " + numberOfYears + " years";
+        return "Installment payment of $" + totalAmount + " with down payment of $" + downPayment + " and interest rate of " + interest + "% over " + numberOfPayments + " years";
     }
-
+    
     @Override
-    public void calculateFinalPrice() {
-        finalPrice = totalAmount + (totalAmount * interest * numberOfYears);
+    public double getFinalPrice() {
+        return this.finalPrice;
     }
 }

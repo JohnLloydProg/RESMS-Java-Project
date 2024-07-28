@@ -37,7 +37,7 @@ public class PropertyFactory {
                   break;
               case 7:
                   if (data[1].contains("B-")) {
-                      buyerId = Integer.parseInt(data[1].split(",")[1]);
+                      buyerId = Integer.parseInt(data[1].split("-")[1]);
                       property = new Property(getBuyer(buyerId), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]), data[6]);
                   }else {
                       reservationId = Integer.parseInt(data[6].split("-")[1]);

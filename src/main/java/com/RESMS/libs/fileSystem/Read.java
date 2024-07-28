@@ -238,6 +238,29 @@ public class Read {
         return transaction;
     }
     
+    public static Transaction getTransaction(Property property) {
+        TransactionFactory factory = new TransactionFactory();
+        Transaction transaction = null;
+        try {
+            File transactionFile = new File("Transactions.txt");
+            Scanner fileReader = new Scanner(transactionFile);
+            Offer offer;
+            String csv;
+            while (fileReader.hasNextLine()) {
+                csv = fileReader.nextLine();
+                offer = getOffer(Integer.parseInt(csv.split(",")[3].split("-")[1]));
+                
+                if (offer.getCurrentProperty().getId().contentEquals(property.getId())) {
+                    transaction = factory.createDataFromCSV(csv);
+                    break;
+                }
+            }
+        }catch (FileNotFoundException err) {
+            System.out.println("Transactions.txt file does not exist.");
+        }
+        return transaction;
+    }
+    
     public static ArrayList<Transaction> getTransactions() {
         TransactionFactory factory = new TransactionFactory();
         ArrayList<Transaction> transactions = new ArrayList<Transaction>();

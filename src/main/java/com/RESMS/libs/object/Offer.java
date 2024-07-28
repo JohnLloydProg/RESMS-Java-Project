@@ -11,24 +11,18 @@ import com.RESMS.libs.fileSystem.FileVisitor;
  */
 public class Offer implements IData {
     
-    private double discount;
     private String currency;
     private Property currentProperty;
     private PaymentMethod paymentMethod;
     private int id;
     
-    public Offer(double discount, String currency, Property currentProperty) {
-        this.discount = discount;
+    public Offer(String currency, Property currentProperty) {
         this.currency = currency;
         this.currentProperty = currentProperty;
     }
     
     public String getDetails() {
-        return " " + discount + currency;
-    }
-
-    public double getDiscount() {
-        return discount;
+        return " " + currency;
     }
 
     public String getCurrency() {
@@ -61,7 +55,7 @@ public class Offer implements IData {
     
     @Override
     public String toCSV() {
-        return this.getId() + "," + this.discount + "," + this.currency + "," + this.currentProperty.getId();
+        return this.getId() + "," + this.currency + "," + this.currentProperty.getId();
     }
     
     @Override

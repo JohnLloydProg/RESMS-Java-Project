@@ -14,7 +14,7 @@ import com.RESMS.libs.fileSystem.Read;
 public class testing {
     public static void main(String[] args) {
         Add add = new Add();
-        Property property = new Property(4, 1, 2250000, 300, "Blue House", Read.getReservation(1));
-        property.fileAction(add);
+        Property property = Read.getProperty(3);
+        System.out.println(property.toCSV());
     }
 }

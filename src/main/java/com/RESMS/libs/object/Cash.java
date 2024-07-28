@@ -35,9 +35,9 @@ public class Cash implements PaymentMethod {
     public String getPaymentDetails() {
         return "Cash payment of $" + finalPrice;
     }
-
+    
     @Override
-    public void calculateFinalPrice() {
-
+    public double getFinalPrice() {
+        return this.finalPrice;
     }
 }

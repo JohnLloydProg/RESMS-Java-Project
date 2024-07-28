@@ -10,22 +10,22 @@ import static com.RESMS.libs.fileSystem.Read.getPaymentMethod;
 
 public class OfferFactory {
     
-    public Offer createData(double discount, String currency, Property currentProperty, Cash cash) {
-        Offer offer = new Offer(discount, currency, currentProperty);
+    public Offer createData(String currency, Property currentProperty, Cash cash) {
+        Offer offer = new Offer(currency, currentProperty);
         offer.setPaymentMethod(cash);
         return offer;
     }
     
-    public Offer createData(double discount, String currency, Property currentProperty, Installment installment) {
-        Offer offer = new Offer(discount, currency, currentProperty);
+    public Offer createData(String currency, Property currentProperty, Installment installment) {
+        Offer offer = new Offer(currency, currentProperty);
         offer.setPaymentMethod(installment);
         return offer;
     }
     
     public Offer createDataFromCSV(String csv) {
         String[] data = csv.split(",");
-        int propertyId = Integer.parseInt(data[3].split("-")[1]);
-        Offer offer = new Offer(Double.parseDouble(data[1]), data[2], getProperty(propertyId));
+        int propertyId = Integer.parseInt(data[2].split("-")[1]);
+        Offer offer = new Offer(data[1], getProperty(propertyId));
         offer.setId(data[0]);
         offer.setPaymentMethod(getPaymentMethod(offer.getId()));
         offer.getPaymentMethod().setId(offer.getId());

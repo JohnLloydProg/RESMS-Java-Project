@@ -10,7 +10,7 @@ package com.RESMS.libs.object;
  */
 public interface PaymentMethod {
     String getPaymentDetails();
-    void calculateFinalPrice();
+    public double getFinalPrice();
     public String getId();
     public void setId(String id);
     String toCSV();

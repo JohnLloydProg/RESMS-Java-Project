@@ -30,8 +30,8 @@ public class Transaction implements IData {
         return buyer;
     }
     
-    public void setAgent(Employee agent) {
-        this.agent = agent;
+    public Employee getAgent() {
+        return this.agent;
     }
 
     public Offer getOffer() {
