@@ -16,10 +16,11 @@ public class Employee implements IData {
     private String credentials;
     private String password;
 
-    public Employee(String lastName, String firstName, String credentials) {
+    public Employee(String lastName, String firstName, String credentials, String password) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.credentials = credentials;
+        this.password = password;
     }
     
     public String getLastName() {

@@ -391,8 +391,8 @@ public class AdminRegisterNewAccount extends javax.swing.JFrame {
             String lName = LastName.getText();
             String credentials = Credentials.getText();
             String password = Password.getText();
-//            Employee newEmployee = new Employee(lName, fName, credentials, password);
-//            newEmployee.fileAction(new Add());
+            Employee newEmployee = new Employee(lName, fName, credentials, password);
+            newEmployee.fileAction(new Add());
             NotificationLabel.setText("Employee Added Successfully!");
         }
     }//GEN-LAST:event_SaveButtonActionPerformed
