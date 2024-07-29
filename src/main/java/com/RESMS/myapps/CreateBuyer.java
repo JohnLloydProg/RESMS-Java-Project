@@ -74,7 +74,7 @@ public class GradientPanel extends JPanel {
         LastNameLabel = new javax.swing.JLabel();
         LastName = new javax.swing.JTextField();
         NotificationLabel = new javax.swing.JLabel();
-        SaveButton = new javax.swing.JButton();
+        SaveButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RESMS | ASCEND - Create Buyer");
@@ -257,14 +257,14 @@ public class GradientPanel extends JPanel {
 
         BuyerInfo.add(BuyerInfoForm);
 
-        SaveButton.setBackground(new java.awt.Color(36, 79, 99));
-        SaveButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        SaveButton.setForeground(new java.awt.Color(255, 255, 255));
-        SaveButton.setText("SAVE");
-        SaveButton.setBorder(null);
-        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+        SaveButton1.setBackground(new java.awt.Color(36, 79, 99));
+        SaveButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SaveButton1.setForeground(new java.awt.Color(255, 255, 255));
+        SaveButton1.setText("SAVE");
+        SaveButton1.setBorder(null);
+        SaveButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveButtonActionPerformed(evt);
+                SaveButton1ActionPerformed(evt);
             }
         });
 
@@ -283,7 +283,7 @@ public class GradientPanel extends JPanel {
                         .addGap(569, 624, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DashboardBackgroundLayout.createSequentialGroup()
                         .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SaveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -296,8 +296,8 @@ public class GradientPanel extends JPanel {
                     .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(SaveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 2541, Short.MAX_VALUE)
         );
@@ -358,18 +358,9 @@ public class GradientPanel extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameActionPerformed
 
-    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        if (FirstName.getText().equals("")||LastName.getText().equals("")){
-            NotificationLabel.setText("Fill out all Fields!");
-        }else{
-            String fName = FirstName.getText();
-            String lName = LastName.getText();
-            Buyer newBuyer = new Buyer(lName, fName);
-            Add addAction = new Add();
-            newBuyer.fileAction(addAction);
-            NotificationLabel.setText("Buyer added successfully!");
-        }
-    }//GEN-LAST:event_SaveButtonActionPerformed
+    private void SaveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SaveButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,7 +430,7 @@ public class GradientPanel extends JPanel {
     private javax.swing.JButton MenuButton;
     private javax.swing.JLabel NotificationLabel;
     private javax.swing.JLabel PropertiesLabel;
-    private javax.swing.JButton SaveButton;
+    private javax.swing.JButton SaveButton1;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
