@@ -3,5 +3,5 @@ E-2,Unida,Mark Angelo,Agent,654321
 E-3,Morales,Rayleen,Agent,12123434
 E-4,Gonzales,Lindsay,Agent,123123
 E-5,Cruz,Audrize,Admin,234567
-E-6,Teodoro,Xabina,xrdteodoro,xrdteodoro
+E-6,Teodoro,Xabina,Admin,1234567
 E-7,Morales,Rayleen,rcgmorales,password

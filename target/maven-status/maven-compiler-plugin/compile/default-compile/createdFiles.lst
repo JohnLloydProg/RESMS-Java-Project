@@ -30,7 +30,6 @@ com\RESMS\mainMenu\CreateReservation$GradientPanel.class
 com\RESMS\mainMenu\CreateReservation.class
 com\RESMS\libs\fileSystem\FileVisitor.class
 com\RESMS\myapps\AdminMain$3.class
-com\RESMS\myapps\AdminMain$CSVReportGenerator.class
 com\RESMS\libs\factory\CashFactory.class
 com\RESMS\myapps\CreateBuyer$4.class
 com\RESMS\mainMenu\PropertyDisplay_Sold$2.class
@@ -38,6 +37,7 @@ com\RESMS\myapps\DisplayOffers$5.class
 com\RESMS\mainMenu\PropertyDisplay_Sold$3.class
 com\RESMS\myapps\DisplayOffers$7.class
 com\RESMS\myapps\AdminRegisterNewAccount$2.class
+com\RESMS\mainMenu\Report$CSVReportGenerator.class
 com\RESMS\myapps\CreateBuyer$1.class
 com\RESMS\mainMenu\CreateReservation$3.class
 com\RESMS\mainMenu\PropertyDisplay_Available$5.class
@@ -144,6 +144,7 @@ com\RESMS\myapps\DisplayOffers$3.class
 com\RESMS\myapps\AdminRegisterNewAccount$6.class
 com\RESMS\myapps\DisplayBuyers$2.class
 com\RESMS\mainMenu\PropertyDisplay_Reserved$GradientPanel.class
+com\RESMS\mainMenu\Report$2.class
 com\RESMS\mainMenu\MainMenu$6.class
 com\RESMS\myapps\DisplayOffers$10.class
 com\RESMS\myapps\CreateReservation$8.class
