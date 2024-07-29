@@ -551,13 +551,12 @@ public class GradientPanel extends JPanel {
         
         if(PaymentMethod.getSelectedItem().equals("Cash")){
             Cash newCash = new Cash(Double.parseDouble(CFinalPrice.getText()));
-            Offer newOffer = new Offer(Double.parseDouble(Discount.getText()),Currency.getSelectedItem().toString(),property);
+            Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);
             newOffer.setPaymentMethod(newCash);
             add.item(newOffer);
         }else{
             Installment newInstall = new Installment(Double.parseDouble(TotalAmount.getText()),Double.parseDouble(Downpayment.getText()),Double.parseDouble(Interest.getText()),Integer.parseInt(NumberOfYears.getText()));
-            Offer newOffer = new Offer(Double.parseDouble(Discount.getText()),Currency.getSelectedItem().toString(),property);
-            newInstall.calculateFinalPrice();
+            Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);
             newOffer.setPaymentMethod(newInstall);
             add.item(newOffer);
         }

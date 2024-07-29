@@ -4,10 +4,6 @@
  */
 package com.RESMS.mainMenu;
 
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import java.awt.Component;
-
 /**
  *
  * @author JohnLloydProg

@@ -46,6 +46,7 @@ public class CreateReservation extends javax.swing.JPanel {
             panel = (JPanel) component;
             isPanel = panel.getName().contentEquals(name);
             panel.setVisible(isPanel);
+            panel.setEnabled(isPanel);
             if (isPanel) {
                 break;
             }

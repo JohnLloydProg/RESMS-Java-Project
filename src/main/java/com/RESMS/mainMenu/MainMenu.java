@@ -156,6 +156,7 @@ public class MainMenu extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Main Menu");
+        jButton1.setEnabled(false);
 
         jButton2.setBackground(new java.awt.Color(33, 158, 188));
         jButton2.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
@@ -248,6 +249,7 @@ public class MainMenu extends javax.swing.JPanel {
             panel = (JPanel) component;
             isPanel = panel.getName().contentEquals(name);
             panel.setVisible(isPanel);
+            panel.setEnabled(isPanel);
             if (isPanel) {
                 break;
             }

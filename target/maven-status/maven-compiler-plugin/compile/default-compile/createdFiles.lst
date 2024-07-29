@@ -27,6 +27,7 @@ com\RESMS\libs\fileSystem\FileVisitor.class
 com\RESMS\myapps\AdminMain$3.class
 com\RESMS\libs\factory\CashFactory.class
 com\RESMS\myapps\CreateBuyer$4.class
+com\RESMS\mainMenu\PropertyDisplay_Sold$2.class
 com\RESMS\myapps\DisplayOffers$5.class
 com\RESMS\myapps\DisplayOffers$7.class
 com\RESMS\myapps\AdminRegisterNewAccount$2.class
@@ -73,6 +74,7 @@ com\RESMS\myapps\CreateReservation.class
 com\RESMS\mainMenu\MenuFrame$1.class
 com\RESMS\myapps\CreateOffer$2.class
 com\RESMS\myapps\AdminMain$GradientPanel.class
+com\RESMS\myapps\DisplayOffers$9.class
 com\RESMS\mainMenu\PropertyDisplay_Available$1.class
 com\RESMS\myapps\DisplayBuyers$4.class
 com\RESMS\myapps\DisplayOffers$1.class
@@ -92,7 +94,9 @@ com\RESMS\myapps\AdminRegisterNewAccount$5.class
 com\RESMS\myapps\DisplayOffers.class
 com\RESMS\libs\fileSystem\Add.class
 com\RESMS\myapps\AdminRegisterNewAccount$8.class
+com\RESMS\myapps\CreateOffer$16.class
 com\RESMS\mainMenu\MenuFrame.class
+com\RESMS\myapps\Login$4.class
 com\RESMS\mainMenu\FilterProperties$1.class
 com\RESMS\myapps\CreateOffer$11.class
 com\RESMS\myapps\CreateOffer$7.class
@@ -110,6 +114,7 @@ com\RESMS\myapps\CreateReservation$9.class
 com\RESMS\myapps\DisplayBuyers.class
 com\RESMS\libs\object\Installment.class
 com\RESMS\myapps\CreateOffer$6.class
+com\RESMS\myapps\CreateOffer$17.class
 com\RESMS\myapps\AdminMain$5.class
 com\RESMS\myapps\CreateBuyer$5.class
 com\RESMS\libs\factory\ReservationFactory.class
@@ -120,6 +125,7 @@ com\RESMS\myapps\CreateReservation$2.class
 com\RESMS\myapps\DisplayOffers$3.class
 com\RESMS\myapps\AdminRegisterNewAccount$6.class
 com\RESMS\myapps\DisplayBuyers$2.class
+com\RESMS\myapps\DisplayOffers$10.class
 com\RESMS\myapps\CreateReservation$8.class
 com\RESMS\myapps\DisplayBuyers$9.class
 com\RESMS\mainMenu\PropertyDisplay_Available$2.class
