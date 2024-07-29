@@ -15,6 +15,7 @@ import com.RESMS.libs.object.PaymentMethod;
 import com.RESMS.libs.object.Property;
 import com.RESMS.libs.object.Reservation;
 import com.RESMS.libs.object.Transaction;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -293,6 +294,9 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void RegisterNewAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterNewAgentButtonActionPerformed
