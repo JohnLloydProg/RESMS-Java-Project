@@ -4,10 +4,19 @@
  */
 package com.RESMS.myapps;
 
+import com.RESMS.libs.fileSystem.Add;
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
+import com.RESMS.libs.object.Cash;
+import com.RESMS.libs.object.Installment;
+import com.RESMS.libs.object.Offer;
+import com.RESMS.libs.object.PaymentMethod;
+import com.RESMS.libs.object.Property;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -37,8 +46,15 @@ public class GradientPanel extends JPanel {
 }
     public CreateOffer() {
         initComponents();
+        SetProperties();
     }
-
+    
+    public void SetProperties(){
+        ArrayList<Property> Properties = Read.getProperties();
+        for(Property property : Properties){
+            PropertyTEST.addItem(property.getId());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,8 +97,6 @@ public class GradientPanel extends JPanel {
         Interest = new javax.swing.JTextField();
         NumberOfYears = new javax.swing.JTextField();
         filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(550, 5), new java.awt.Dimension(200, 200));
-        IFinalPriceLabel = new javax.swing.JLabel();
-        IFinalPrice = new javax.swing.JTextField();
         TotalAmountLabel = new javax.swing.JLabel();
         TotalAmount = new javax.swing.JTextField();
         OfferDetails = new javax.swing.JPanel();
@@ -91,18 +105,16 @@ public class GradientPanel extends JPanel {
         OfferDetailsForm = new javax.swing.JPanel();
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(550, 15), new java.awt.Dimension(200, 200));
         OfferPriceLabel = new javax.swing.JLabel();
-        OfferPrice = new javax.swing.JTextField();
+        PropertyTEST = new javax.swing.JComboBox<>();
         CurrencyLabel = new javax.swing.JLabel();
         Currency = new javax.swing.JComboBox<>();
         DiscountLabel = new javax.swing.JLabel();
         Discount = new javax.swing.JTextField();
-        BuyerLabel = new javax.swing.JLabel();
-        Buyer = new javax.swing.JComboBox<>();
         PaymentMethodLabel = new javax.swing.JLabel();
         PaymentMethod = new javax.swing.JComboBox<>();
+        label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("RESMS | ASCEND - Create Offer");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
@@ -323,19 +335,6 @@ public class GradientPanel extends JPanel {
         ModeOfPaymentForm.add(NumberOfYears);
         ModeOfPaymentForm.add(filler13);
 
-        IFinalPriceLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        IFinalPriceLabel.setText("Final Price");
-        ModeOfPaymentForm.add(IFinalPriceLabel);
-
-        IFinalPrice.setMinimumSize(new java.awt.Dimension(500, 22));
-        IFinalPrice.setPreferredSize(new java.awt.Dimension(455, 35));
-        IFinalPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IFinalPriceActionPerformed(evt);
-            }
-        });
-        ModeOfPaymentForm.add(IFinalPrice);
-
         TotalAmountLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TotalAmountLabel.setText("Total Amount");
         ModeOfPaymentForm.add(TotalAmountLabel);
@@ -391,17 +390,16 @@ public class GradientPanel extends JPanel {
         OfferDetailsForm.add(filler8);
 
         OfferPriceLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        OfferPriceLabel.setText("Offer Price");
+        OfferPriceLabel.setText("Property");
         OfferDetailsForm.add(OfferPriceLabel);
 
-        OfferPrice.setMinimumSize(new java.awt.Dimension(500, 22));
-        OfferPrice.setPreferredSize(new java.awt.Dimension(455, 35));
-        OfferPrice.addActionListener(new java.awt.event.ActionListener() {
+        PropertyTEST.setPreferredSize(new java.awt.Dimension(455, 35));
+        PropertyTEST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OfferPriceActionPerformed(evt);
+                PropertyTESTActionPerformed(evt);
             }
         });
-        OfferDetailsForm.add(OfferPrice);
+        OfferDetailsForm.add(PropertyTEST);
 
         CurrencyLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CurrencyLabel.setText("Currency");
@@ -409,6 +407,11 @@ public class GradientPanel extends JPanel {
 
         Currency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Philippine Peso", "US Dollar" }));
         Currency.setPreferredSize(new java.awt.Dimension(455, 35));
+        Currency.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CurrencyActionPerformed(evt);
+            }
+        });
         OfferDetailsForm.add(Currency);
 
         DiscountLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -424,14 +427,6 @@ public class GradientPanel extends JPanel {
         });
         OfferDetailsForm.add(Discount);
 
-        BuyerLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        BuyerLabel.setText("Buyer");
-        OfferDetailsForm.add(BuyerLabel);
-
-        Buyer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "John Doe" }));
-        Buyer.setPreferredSize(new java.awt.Dimension(455, 35));
-        OfferDetailsForm.add(Buyer);
-
         PaymentMethodLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PaymentMethodLabel.setText("Payment Method");
         OfferDetailsForm.add(PaymentMethodLabel);
@@ -439,12 +434,25 @@ public class GradientPanel extends JPanel {
         PaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Installment" }));
         PaymentMethod.setToolTipText("");
         PaymentMethod.setPreferredSize(new java.awt.Dimension(455, 35));
+        PaymentMethod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                PaymentMethodItemStateChanged(evt);
+            }
+        });
         PaymentMethod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PaymentMethodActionPerformed(evt);
             }
         });
+        PaymentMethod.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                PaymentMethodPropertyChange(evt);
+            }
+        });
         OfferDetailsForm.add(PaymentMethod);
+
+        label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        OfferDetailsForm.add(label);
 
         OfferDetails.add(OfferDetailsForm);
 
@@ -494,7 +502,7 @@ public class GradientPanel extends JPanel {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DashboardBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1604, Short.MAX_VALUE)
+            .addComponent(DashboardBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,12 +544,26 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        // TODO add your handling code here:
+        Add add = new Add();
+        String value = PropertyTEST.getSelectedItem().toString();
+        String id = value.replaceAll("[^0-9]", ""); // regular expression
+        Property property = Read.getProperty(Integer.parseInt(id));
+        
+        if(PaymentMethod.getSelectedItem().equals("Cash")){
+            Cash newCash = new Cash(Double.parseDouble(CFinalPrice.getText()));
+            Offer newOffer = new Offer(Double.parseDouble(Discount.getText()),Currency.getSelectedItem().toString(),property);
+            newOffer.setPaymentMethod(newCash);
+            add.item(newOffer);
+        }else{
+            Installment newInstall = new Installment(Double.parseDouble(TotalAmount.getText()),Double.parseDouble(Downpayment.getText()),Double.parseDouble(Interest.getText()),Integer.parseInt(NumberOfYears.getText()));
+            Offer newOffer = new Offer(Double.parseDouble(Discount.getText()),Currency.getSelectedItem().toString(),property);
+            newInstall.calculateFinalPrice();
+            newOffer.setPaymentMethod(newInstall);
+            add.item(newOffer);
+        }
+        label.setText("Successfully Added an Offer!");
+        
     }//GEN-LAST:event_SaveButtonActionPerformed
-
-    private void OfferPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OfferPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OfferPriceActionPerformed
 
     private void DiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscountActionPerformed
         // TODO add your handling code here:
@@ -563,10 +585,6 @@ public class GradientPanel extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_DownpaymentActionPerformed
 
-    private void IFinalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IFinalPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IFinalPriceActionPerformed
-
     private void InterestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InterestActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InterestActionPerformed
@@ -574,6 +592,36 @@ public class GradientPanel extends JPanel {
     private void TotalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalAmountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TotalAmountActionPerformed
+
+    private void CurrencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurrencyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CurrencyActionPerformed
+
+    private void PaymentMethodPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_PaymentMethodPropertyChange
+        // Changes the usable text fields
+        
+        
+    }//GEN-LAST:event_PaymentMethodPropertyChange
+
+    private void PaymentMethodItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PaymentMethodItemStateChanged
+        if(PaymentMethod.getSelectedItem().equals("Cash")){
+            CFinalPrice.setEnabled(true);
+            Downpayment.setEnabled(false);
+            Interest.setEnabled(false);
+            NumberOfYears.setEnabled(false);
+            TotalAmount.setEnabled(false);
+        }else{
+            CFinalPrice.setEnabled(false);
+            Downpayment.setEnabled(true);
+            Interest.setEnabled(true);
+            NumberOfYears.setEnabled(true);
+            TotalAmount.setEnabled(true);
+        }
+    }//GEN-LAST:event_PaymentMethodItemStateChanged
+
+    private void PropertyTESTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PropertyTESTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PropertyTESTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -675,8 +723,6 @@ public class GradientPanel extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Arrow;
-    private javax.swing.JComboBox<String> Buyer;
-    private javax.swing.JLabel BuyerLabel;
     private javax.swing.JTextField CFinalPrice;
     private javax.swing.JLabel CFinalPriceLabel;
     private javax.swing.JLabel CashLabel;
@@ -687,8 +733,6 @@ public class GradientPanel extends JPanel {
     private javax.swing.JLabel DiscountLabel;
     private javax.swing.JTextField Downpayment;
     private javax.swing.JLabel DownpaymentLabel;
-    private javax.swing.JTextField IFinalPrice;
-    private javax.swing.JLabel IFinalPriceLabel;
     private javax.swing.JLabel InstallmentLabel;
     private javax.swing.JTextField Interest;
     private javax.swing.JLabel InterestLabel;
@@ -706,10 +750,10 @@ public class GradientPanel extends JPanel {
     private javax.swing.JPanel OfferDetailsBox;
     private javax.swing.JPanel OfferDetailsForm;
     private javax.swing.JLabel OfferDetailsLabel;
-    private javax.swing.JTextField OfferPrice;
     private javax.swing.JLabel OfferPriceLabel;
     private javax.swing.JComboBox<String> PaymentMethod;
     private javax.swing.JLabel PaymentMethodLabel;
+    private javax.swing.JComboBox<String> PropertyTEST;
     private javax.swing.JButton SaveButton;
     private javax.swing.JTextField TotalAmount;
     private javax.swing.JLabel TotalAmountLabel;
@@ -726,5 +770,6 @@ public class GradientPanel extends JPanel {
     private javax.swing.Box.Filler filler8;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
