@@ -159,6 +159,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

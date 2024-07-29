@@ -251,6 +251,7 @@ public class GradientPanel extends JPanel {
         BuyerInfoForm.add(LastName);
 
         NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setForeground(new java.awt.Color(204, 0, 0));
         NotificationLabel.setPreferredSize(new java.awt.Dimension(1070, 35));
         BuyerInfoForm.add(NotificationLabel);
 

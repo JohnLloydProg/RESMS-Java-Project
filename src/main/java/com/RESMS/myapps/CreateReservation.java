@@ -92,7 +92,6 @@ public class CreateReservation extends javax.swing.JFrame {
         setTitle("RESMS | ASCEND - Create Reservation");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
-        setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
         setSize(new java.awt.Dimension(1600, 900));
 
@@ -260,6 +259,7 @@ public class CreateReservation extends javax.swing.JFrame {
         });
 
         NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setForeground(new java.awt.Color(204, 0, 0));
         NotificationLabel.setPreferredSize(new java.awt.Dimension(1070, 35));
 
         javax.swing.GroupLayout ReservationInfoFormLayout = new javax.swing.GroupLayout(ReservationInfoForm);

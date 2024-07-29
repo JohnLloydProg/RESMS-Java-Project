@@ -326,6 +326,7 @@ public class GradientPanel extends JPanel {
         jLabel1.setPreferredSize(new java.awt.Dimension(69, 25));
 
         label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label.setForeground(new java.awt.Color(204, 0, 0));
         label.setPreferredSize(new java.awt.Dimension(69, 25));
 
         SelectAgent.setPreferredSize(new java.awt.Dimension(455, 35));
@@ -386,12 +387,10 @@ public class GradientPanel extends JPanel {
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 2541, Short.MAX_VALUE)
             .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Arrow)
+                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Arrow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ListOfOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                    .addComponent(label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
