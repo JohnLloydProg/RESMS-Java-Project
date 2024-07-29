@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
-    <Property name="resizable" type="boolean" value="false"/>
-    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1080, 720]"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1080, 684]"/>
     </Property>
   </Properties>
-  <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
-  </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -34,9 +28,9 @@
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="42" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="reportBtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="availableBtn" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -45,13 +39,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="47" max="32767" attributes="0"/>
-              <Component id="reportBtn" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="availableBtn" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,8 +65,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
@@ -114,18 +108,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="buyerField" max="32767" attributes="0"/>
+                                          <Component id="buyerField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="reservationFeeField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel5" alignment="0" pref="230" max="32767" attributes="0"/>
                                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel7" max="32767" attributes="0"/>
-                                              <Component id="lotField" pref="75" max="32767" attributes="0"/>
+                                              <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lotField" alignment="0" pref="75" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -136,23 +130,23 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                                  <Component id="dueDateField" max="32767" attributes="0"/>
-                                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                                  <Component id="dueDateField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="SRPField" max="32767" attributes="0"/>
-                                                  <Component id="jLabel6" min="-2" pref="230" max="-2" attributes="0"/>
+                                                  <Component id="SRPField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel6" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel9" min="-2" pref="75" max="-2" attributes="0"/>
-                                              <Component id="sizeField" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="jLabel9" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                              <Component id="sizeField" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
@@ -161,7 +155,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane2" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
@@ -174,12 +168,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="dueDateField" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="buyerField" min="-2" pref="35" max="-2" attributes="0"/>
@@ -187,12 +181,12 @@
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="reservationFeeField" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="SRPField" min="-2" pref="35" max="-2" attributes="0"/>
@@ -200,17 +194,17 @@
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lotField" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="blockField" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="sizeField" min="-2" pref="35" max="-2" attributes="0"/>
@@ -382,8 +376,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton1" max="32767" attributes="0"/>
-                      <Component id="jButton2" pref="282" max="32767" attributes="0"/>
+                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jButton2" alignment="1" pref="282" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -435,7 +429,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="reportBtn">
+    <Component class="javax.swing.JButton" name="availableBtn">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e6" green="ca" red="8e" type="rgb"/>
@@ -445,6 +439,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Make Property Available"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="availableBtnMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -1,32 +1,33 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.RESMS.mainMenu;
 
-import java.util.ArrayList;
-import com.RESMS.libs.object.Property;
 import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Property;
 import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
  * @author JohnLloydProg
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenu extends javax.swing.JPanel {
 
     /**
-     * Creates new form MainMenu
+     * Creates new form MainMenu1
      */
     public MainMenu() {
         initComponents();
-        this.getContentPane().setBackground(new Color(255, 255, 255));
         this.jPanel1.setLayout(null);
-        System.out.println("Adding properties");
-        initPropertiesButton(Read.getProperties());
     }
     
-    private void initPropertiesButton(ArrayList<Property> properties) {
+    public void initPropertiesButton() {
+        this.jPanel1.removeAll();
+        ArrayList<Property> properties = Read.getProperties();
         PropertyButton button;
         int block = 0;
         boolean adding = true;
@@ -83,11 +84,8 @@ public class MainMenu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         reportBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1080, 720));
-        setResizable(false);
-        setSize(new java.awt.Dimension(1080, 720));
 
         jPanel2.setBackground(new java.awt.Color(241, 241, 241));
 
@@ -189,8 +187,8 @@ public class MainMenu extends javax.swing.JFrame {
         reportBtn.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
         reportBtn.setText("Generate Report");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -220,8 +218,6 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void filterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterBtnMouseClicked
@@ -233,48 +229,30 @@ public class MainMenu extends javax.swing.JFrame {
         PropertyButton myButton = (PropertyButton)evt.getSource();
         Property property = myButton.getProperty();
         if (property.getReservation() != null) {
-            new PropertyDisplay_Reserved(property).setVisible(true);
+            PropertyDisplay_Reserved panel = (PropertyDisplay_Reserved) this.viewPanel("Display Reserved");
+            panel.setProperty(property);
         }else if (property.getOwner() != null) {
-            new PropertyDisplay_Sold(property).setVisible(true);
+            PropertyDisplay_Sold panel = (PropertyDisplay_Sold) this.viewPanel("Display Sold");
+            panel.setProperty(property);
         }else {
-            new PropertyDisplay_Available(property).setVisible(true);
+            PropertyDisplay_Available panel = (PropertyDisplay_Available) this.viewPanel("Display Available");
+            panel.setProperty(property);
         }
         this.setVisible(false);
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private JPanel viewPanel(String name) {
+        JPanel panel = null;
+        boolean isPanel;
+        for (Component component : this.getParent().getComponents()) {
+            panel = (JPanel) component;
+            isPanel = panel.getName().contentEquals(name);
+            panel.setVisible(isPanel);
+            if (isPanel) {
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
+        return panel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -49,8 +49,8 @@ public class Property implements IData {
         return "" + owner + lot + block + SRP + size + description + reservation + id;
     }
     
-    public void reserveProperty(Reservation reservation) {
-        //System.out.println("Property reserved");
+    public void setOwner(Buyer owner) {
+        this.owner = owner;
     }
 
     public Buyer getOwner() {
@@ -83,6 +83,10 @@ public class Property implements IData {
 
     public Reservation getReservation() {
         return reservation;
+    }
+    
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 
     public String getId() {
