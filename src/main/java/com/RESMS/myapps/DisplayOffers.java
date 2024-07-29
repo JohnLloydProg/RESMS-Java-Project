@@ -281,7 +281,6 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
-        OffersTable.setCellSelectionEnabled(false);
         OffersTable.setGridColor(new java.awt.Color(255, 255, 255));
         OffersTable.getTableHeader().setReorderingAllowed(false);
         OfferList.setViewportView(OffersTable);
@@ -379,13 +378,14 @@ public class GradientPanel extends JPanel {
                         .addComponent(OfferInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addGap(632, 632, 632)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(SelectBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(1705, Short.MAX_VALUE))
         );
 
@@ -435,11 +435,11 @@ public class GradientPanel extends JPanel {
        this.ManageBuyerButton.setContentAreaFilled(true);
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
-    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         CreateOffer newForm = new CreateOffer(); 
         newForm.setVisible(true);
         dispose();
-    }//GEN-LAST:event_CreateButtonActionPerformed
+    }                                            
 
     private void AcceptButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcceptButtonMouseClicked
         Add add = new Add();
@@ -447,8 +447,8 @@ public class GradientPanel extends JPanel {
         String id = value.replaceAll("[^0-9]", ""); // regular expression
         
         int column = 0;
-        int row = jTable2.getSelectedRow();
-        String value2 = jTable2.getModel().getValueAt(row, column).toString();
+        int row = OffersTable.getSelectedRow();
+        String value2 = OffersTable.getModel().getValueAt(row, column).toString();
         String id2 = value2.replaceAll("[^0-9]", ""); 
         
         //check if offer is already a part of the transaction.
@@ -501,51 +501,8 @@ public class GradientPanel extends JPanel {
             label.setText("Offer succesfully deleted!");
             populateTable();
         }
-<<<<<<< HEAD
     }//GEN-LAST:event_RejectButtonMouseClicked
-=======
-    }//GEN-LAST:event_RejectButtonActionPerformed
 
-    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
-        
-        Add add = new Add();
-        String value = SelectBuyers.getSelectedItem().toString();
-        String id = value.replaceAll("[^0-9]", ""); // regular expression
-        
-        int column = 0;
-        int row = OffersTable.getSelectedRow();
-        String value2 = OffersTable.getModel().getValueAt(row, column).toString();
-        String id2 = value2.replaceAll("[^0-9]", ""); 
-        
-        String value3 = SelectAgent.getSelectedItem().toString();
-        String id3 = value3.replaceAll("[^0-9]", ""); // regular expression
-        
-        //check if offer is already a part of the transaction.
-        ArrayList<Transaction> Transactions = Read.getTransactions();
-        boolean check = false;
-        
-        for(Transaction transaction : Transactions){
-            if(transaction.getOffer().getId().equals(value2)){
-                check = true;
-            }
-        }
-        
-        //if already a part of the transaction dont accept
-        if(check){
-            label.setText("Offer is already part of a transaction!");
-        }else{
-            Transaction newTransaction = new Transaction(Read.getEmployee(Integer.parseInt(id3)),Read.getBuyer(Integer.parseInt(id)),Read.getOffer(Integer.parseInt(id2)));
-            add.item(newTransaction);
-            label.setText("Offer succesfully accepted!");
-        }
-    }//GEN-LAST:event_AcceptButtonActionPerformed
-
-    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        CreateOffer newForm = new CreateOffer(); 
-        newForm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_CreateButtonActionPerformed
->>>>>>> 61c37b74e937f716cd7aacbe630efc8aacb327c0
 
     /**
      * @param args the command line arguments

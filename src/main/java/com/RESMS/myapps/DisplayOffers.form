@@ -106,13 +106,15 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="632" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="AcceptButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="RejectButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="CreateButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="SelectBuyers" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="AcceptButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="RejectButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="CreateButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -474,7 +476,6 @@
                         <Column editable="false" title="Currency" type="java.lang.String"/>
                       </Table>
                     </Property>
-                    <Property name="cellSelectionEnabled" type="boolean" value="false"/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="1">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">

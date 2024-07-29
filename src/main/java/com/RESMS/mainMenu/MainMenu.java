@@ -205,21 +205,9 @@ public class MainMenu extends javax.swing.JPanel {
         Menu.add(jLabel5);
         Menu.add(filler7);
 
-<<<<<<< HEAD
         filler5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         Menu.add(filler5);
         Menu.add(filler6);
-=======
-        jButton2.setBackground(new java.awt.Color(33, 158, 188));
-        jButton2.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Manage Buyers");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
->>>>>>> 61c37b74e937f716cd7aacbe630efc8aacb327c0
 
         MenuButton.setBackground(new java.awt.Color(61, 131, 164));
         MenuButton.setFont(MenuButton.getFont().deriveFont(MenuButton.getFont().getStyle() | java.awt.Font.BOLD, MenuButton.getFont().getSize()+12));
@@ -376,7 +364,6 @@ public class MainMenu extends javax.swing.JPanel {
         new FilterProperties(this).setVisible(true);
     }//GEN-LAST:event_filterBtnMouseClicked
 
-<<<<<<< HEAD
     private void offerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_offerBtnMouseClicked
         new DisplayOffers().setVisible(true);
         this.frame.dispose();
@@ -390,11 +377,6 @@ public class MainMenu extends javax.swing.JPanel {
         this.frame.cardLayout.show(this.frame.container, "Main Menu");
         ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_MenuButtonMouseClicked
-=======
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
->>>>>>> 61c37b74e937f716cd7aacbe630efc8aacb327c0
     
     private void propertyBtnClicked(java.awt.event.MouseEvent evt) {
         PropertyButton myButton = (PropertyButton)evt.getSource();
