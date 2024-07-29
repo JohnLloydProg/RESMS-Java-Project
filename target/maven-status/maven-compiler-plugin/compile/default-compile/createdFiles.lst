@@ -7,6 +7,8 @@ com\RESMS\myapps\DisplayOffers$2.class
 com\RESMS\myapps\CreateReservation$7.class
 com\RESMS\myapps\AdminRegisterNewAccount$GradientPanel.class
 com\RESMS\myapps\DisplayBuyers$8.class
+com\RESMS\mainMenu\Report.class
+com\RESMS\mainMenu\Report$1.class
 com\RESMS\myapps\AdminRegisterNewAccount$4.class
 com\RESMS\myapps\CreateOffer$12.class
 com\RESMS\myapps\CreateBuyer.class

@@ -6,23 +6,25 @@ package com.RESMS.mainMenu;
 
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Property;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.JPanel;
 
 /**
  *
  * @author JohnLloydProg
  */
 public class MainMenu extends javax.swing.JPanel {
-
+    
+    private MenuFrame frame;
     /**
      * Creates new form MainMenu1
      */
-    public MainMenu() {
+    public MainMenu(MenuFrame frame) {
         initComponents();
         this.jPanel1.setLayout(null);
+        this.frame = frame;
     }
     
     public void initPropertiesButton() {
@@ -156,7 +158,6 @@ public class MainMenu extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Main Menu");
-        jButton1.setEnabled(false);
 
         jButton2.setBackground(new java.awt.Color(33, 158, 188));
         jButton2.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
@@ -230,31 +231,15 @@ public class MainMenu extends javax.swing.JPanel {
         PropertyButton myButton = (PropertyButton)evt.getSource();
         Property property = myButton.getProperty();
         if (property.getReservation() != null) {
-            PropertyDisplay_Reserved panel = (PropertyDisplay_Reserved) this.viewPanel("Display Reserved");
-            panel.setProperty(property);
+            this.frame.cardLayout.show(this.frame.container, "Display Reserved");
+            ((PropertyDisplay_Reserved) this.frame.getPanel("Display Reserved")).setProperty(property);
         }else if (property.getOwner() != null) {
-            PropertyDisplay_Sold panel = (PropertyDisplay_Sold) this.viewPanel("Display Sold");
-            panel.setProperty(property);
+            this.frame.cardLayout.show(this.frame.container, "Display Sold");
+            ((PropertyDisplay_Sold) this.frame.getPanel("Display Sold")).setProperty(property);
         }else {
-            PropertyDisplay_Available panel = (PropertyDisplay_Available) this.viewPanel("Display Available");
-            panel.setProperty(property);
+            this.frame.cardLayout.show(this.frame.container, "Display Available");
+            ((PropertyDisplay_Available) this.frame.getPanel("Display Available")).setProperty(property);
         }
-        this.setVisible(false);
-    }
-    
-    private JPanel viewPanel(String name) {
-        JPanel panel = null;
-        boolean isPanel;
-        for (Component component : this.getParent().getComponents()) {
-            panel = (JPanel) component;
-            isPanel = panel.getName().contentEquals(name);
-            panel.setVisible(isPanel);
-            panel.setEnabled(isPanel);
-            if (isPanel) {
-                break;
-            }
-        }
-        return panel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

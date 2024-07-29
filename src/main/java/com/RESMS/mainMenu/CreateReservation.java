@@ -11,9 +11,7 @@ import com.RESMS.libs.object.Buyer;
 import com.RESMS.libs.object.Property;
 import com.RESMS.libs.object.Reservation;
 import com.RESMS.libs.factory.ReservationFactory;
-import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.JPanel;
 
 /**
  *
@@ -23,12 +21,14 @@ public class CreateReservation extends javax.swing.JPanel {
     
     private Property property;
     private ArrayList<Buyer> buyers;
+    private MenuFrame frame;
     
     /**
      * Creates new form CreateReservation1
      */
-    public CreateReservation() {
+    public CreateReservation(MenuFrame frame) {
         initComponents();
+        this.frame = frame;
     }
     
     public void setProperty(Property property) {
@@ -37,21 +37,6 @@ public class CreateReservation extends javax.swing.JPanel {
         for (Buyer buyer : this.buyers) {
             this.BuyerComboBox.addItem(buyer.getFirstName() + " " + buyer.getLastName());
         }
-    }
-    
-    private JPanel viewPanel(String name) {
-        JPanel panel = null;
-        boolean isPanel;
-        for (Component component : this.getParent().getComponents()) {
-            panel = (JPanel) component;
-            isPanel = panel.getName().contentEquals(name);
-            panel.setVisible(isPanel);
-            panel.setEnabled(isPanel);
-            if (isPanel) {
-                break;
-            }
-        }
-        return panel;
     }
 
     /**
@@ -211,8 +196,8 @@ public class CreateReservation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        MainMenu panel = (MainMenu)this.viewPanel("Main Menu");
-        panel.initPropertiesButton();
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void reportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportBtnMouseClicked
@@ -229,8 +214,8 @@ public class CreateReservation extends javax.swing.JPanel {
         reservation.fileAction(new Add());
         this.property.setReservation(reservation);
         this.property.fileAction(new Update());
-        MainMenu panel = (MainMenu)this.viewPanel("Main Menu");
-        panel.initPropertiesButton();
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_reportBtnMouseClicked
 
 

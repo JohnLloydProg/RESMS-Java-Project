@@ -21,12 +21,14 @@ public class PropertyDisplay_Sold extends javax.swing.JPanel {
     
     private Property property;
     private Transaction transaction;
+    private MenuFrame frame;
     
     /**
      * Creates new form PropertyDisplay_Sold1
      */
-    public PropertyDisplay_Sold() {
+    public PropertyDisplay_Sold(MenuFrame frame) {
         initComponents();
+        this.frame = frame;
     }
     
     public void setProperty(Property property) {
@@ -60,21 +62,6 @@ public class PropertyDisplay_Sold extends javax.swing.JPanel {
         this.blockField.setText("" + this.property.getBlock());
         this.sizeField.setText("" + this.property.getSize());
         this.descriptionArea.setText(this.property.getDescription());
-    }
-    
-    private JPanel viewPanel(String name) {
-        JPanel panel = null;
-        boolean isPanel;
-        for (Component component : this.getParent().getComponents()) {
-            panel = (JPanel) component;
-            isPanel = panel.getName().contentEquals(name);
-            panel.setVisible(isPanel);
-            panel.setEnabled(isPanel);
-            if (isPanel) {
-                break;
-            }
-        }
-        return panel;
     }
 
     /**
@@ -364,16 +351,17 @@ public class PropertyDisplay_Sold extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        MainMenu panel = (MainMenu)this.viewPanel("Main Menu");
-        panel.initPropertiesButton();
+        
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void availableBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_availableBtnMouseClicked
         this.property.setOwner(null);
         this.property.fileAction(new Update());
         this.transaction.fileAction(new Delete());
-        MainMenu panel = (MainMenu)this.viewPanel("Main Menu");
-        panel.initPropertiesButton();
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_availableBtnMouseClicked
 
 

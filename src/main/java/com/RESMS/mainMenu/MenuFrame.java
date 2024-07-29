@@ -4,6 +4,10 @@
  */
 package com.RESMS.mainMenu;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author JohnLloydProg
@@ -15,33 +19,49 @@ public class MenuFrame extends javax.swing.JFrame {
     private PropertyDisplay_Reserved reserved;
     private PropertyDisplay_Sold sold;
     private CreateReservation reservation;
+    public CardLayout cardLayout;
+    public JPanel container;
     
     /**
      * Creates new form MainMenu
      */
     public MenuFrame() {
         initComponents();
-        this.menu = new MainMenu();
-        this.available = new PropertyDisplay_Available();
-        this.reserved = new PropertyDisplay_Reserved();
-        this.sold = new PropertyDisplay_Sold();
-        this.reservation = new CreateReservation();
+        this.cardLayout = new CardLayout();
+        this.container = new JPanel();
+        this.container.setLayout(this.cardLayout);
+        this.container.setName("Container");
+        
+        this.menu = new MainMenu(this);
         this.menu.setName("Main Menu");
+        this.available = new PropertyDisplay_Available(this);
         this.available.setName("Display Available");
+        this.reserved = new PropertyDisplay_Reserved(this);
         this.reserved.setName("Display Reserved");
+        this.sold = new PropertyDisplay_Sold(this);
         this.sold.setName("Display Sold");
+        this.reservation = new CreateReservation(this);
         this.reservation.setName("Create Reservation");
-        this.jPanel1.add(this.menu);
-        this.jPanel1.add(this.available);
-        this.jPanel1.add(this.reserved);
-        this.jPanel1.add(this.sold);
-        this.jPanel1.add(this.reservation);
+        
+        this.container.add("Main Menu", this.menu);
+        this.container.add("Display Available",this.available);
+        this.container.add("Display Reserved", this.reserved);
+        this.container.add("Display Sold", this.sold);
+        this.container.add("Create Reservation", this.reservation);
+        
         this.menu.initPropertiesButton();
-        this.menu.setVisible(true);
-        this.available.setVisible(false);
-        this.reserved.setVisible(false);
-        this.sold.setVisible(false);
-        this.reservation.setVisible(false);
+        this.cardLayout.show(this.container, "Main Menu");
+        this.add(this.container);
+    }
+    
+    public Component getPanel(String name) {
+        Component panel = null;
+        for (Component component : this.container.getComponents()) {
+            if (component.getName().contentEquals(name)) {
+                panel = component;
+            }
+        }
+        return panel;
     }
 
     /**
@@ -54,7 +74,6 @@ public class MenuFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -72,19 +91,6 @@ public class MenuFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1080, 720));
-
-        jPanel1.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,6 +134,5 @@ public class MenuFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

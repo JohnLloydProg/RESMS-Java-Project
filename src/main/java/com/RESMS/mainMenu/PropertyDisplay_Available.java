@@ -8,6 +8,7 @@ import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Offer;
 import com.RESMS.libs.object.Property;
 import java.awt.Component;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,12 +18,14 @@ import javax.swing.JPanel;
 public class PropertyDisplay_Available extends javax.swing.JPanel {
     
     private Property property;
+    private MenuFrame frame;
     
     /**
      * Creates new form PropertyDisplay_Available1
      */
-    public PropertyDisplay_Available() {
+    public PropertyDisplay_Available(MenuFrame frame) {
         initComponents();
+        this.frame = frame;
     }
     
     public void setProperty(Property property) {
@@ -31,21 +34,6 @@ public class PropertyDisplay_Available extends javax.swing.JPanel {
         if (!this.hasOffer()) {
             this.reservationBtn.setEnabled(false);
         }
-    }
-    
-    private JPanel viewPanel(String name) {
-        JPanel panel = null;
-        boolean isPanel;
-        for (Component component : this.getParent().getComponents()) {
-            panel = (JPanel) component;
-            isPanel = panel.getName().contentEquals(name);
-            panel.setVisible(isPanel);
-            panel.setEnabled(isPanel);
-            if (isPanel) {
-                break;
-            }
-        }
-        return panel;
     }
 
     /**
@@ -308,13 +296,13 @@ public class PropertyDisplay_Available extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        MainMenu panel = (MainMenu)this.viewPanel("Main Menu");
-        panel.initPropertiesButton();
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void reservationBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservationBtnMouseClicked
-        CreateReservation panel = (CreateReservation) this.viewPanel("Create Reservation");
-        panel.setProperty(this.property);
+        this.frame.cardLayout.show(this.frame.container, "Create Reservation");
+        ((CreateReservation) this.frame.getPanel("Create Reservation")).setProperty(this.property);
     }//GEN-LAST:event_reservationBtnMouseClicked
 
 
