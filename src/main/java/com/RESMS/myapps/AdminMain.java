@@ -55,46 +55,79 @@ public class AdminMain extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void generateCSVReport(ArrayList<IData> items, String filePath){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-                // Write the header
-                if (!items.isEmpty()) {
-                    writeHeader(writer, items.get(0));
+    public class CSVReportGenerator{
+        
+    public void generateCSVReport(ArrayList<IData> items, String filePath) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                Class<?> currentClass = null;
+                ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
+
+                // for non-offer items; get payment method
+                for (IData item : items) {
+                    if (item instanceof Offer) {
+                        Offer offer = (Offer) item;
+                        paymentMethods.add(offer.getPaymentMethod());
+                        if (currentClass == null || !item.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, item);
+                            currentClass = item.getClass();
+                        }
+                        writer.write(offer.toCSV());
+                        writer.newLine();
+                    } else {
+                        if (currentClass == null || !item.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, item);
+                            currentClass = item.getClass();
+                        }
+                        writer.write(item.toCSV());
+                        writer.newLine();
+                    }
                 }
 
-                // Write each item in CSV format
-                for (IData item : items) {
-                    writer.write(item.toCSV());
+                // for payment method
+                if (!paymentMethods.isEmpty()) {
                     writer.newLine();
+                    currentClass = null; // reset current class
+                    for (PaymentMethod paymentMethod : paymentMethods) {
+                        if (currentClass == null || !paymentMethod.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, paymentMethod);
+                            currentClass = paymentMethod.getClass();
+                        }
+                        writer.write(paymentMethod.toCSV());
+                        writer.newLine();
+                    }
                 }
 
                 System.out.println("CSV report generated successfully.");
             } catch (IOException e) {
                 System.out.println("An error occurred while generating the CSV report.");
                 e.printStackTrace();
-            }       
-    }
-    
-    private void writeHeader(BufferedWriter writer, IData item) throws IOException {
-        if (item instanceof Employee) {
-            writer.write("Employee ID, Last Name, First Name, Credentials, Password");
-        } else if (item instanceof Buyer) {
-            writer.write("Buyer ID, Last Name, First Name");
-        } else if (item instanceof Property) {
-            writer.write("Property ID, Owner, Lot, Block, SRP, Size, Description, Reservation");
-        } else if (item instanceof Reservation) {
-            writer.write("Reservation ID, Buyer ID, Price, Due Date");
-        } else if (item instanceof Offer) {
-            writer.write("Offer ID, Discount, Currency, Property ID");
-        } else if (item instanceof Transaction) {
-            writer.write("Transaction ID, Agent ID, Buyer ID, Offer ID");
-        } else if (item instanceof Cash) {
-            writer.write("Cash Payment ID, Final Price");
-        } else if (item instanceof Installment) {
-            writer.write("Installment Payment ID of Total Amount with Downpayment and Interest Rate for over Number of Years");
+            }
+        } 
+
+    private void writeHeader(BufferedWriter writer, Object item) throws IOException {
+            if (item instanceof Employee) {
+                writer.write("Employee ID, Last Name, First Name, Credentials, Password");
+            } else if (item instanceof Buyer) {
+                writer.write("Buyer ID, Last Name, First Name");
+            } else if (item instanceof Property) {
+                writer.write("Property ID, Owner, Lot, Block, SRP, Size, Description, Reservation");
+            } else if (item instanceof Reservation) {
+                writer.write("Reservation ID, Buyer ID, Price, Due Date");
+            } else if (item instanceof Offer) {
+                writer.write("Offer ID, Discount, Currency, Property ID");
+            } else if (item instanceof Transaction) {
+                writer.write("Transaction ID, Agent ID, Buyer ID, Offer ID");
+            } else if (item instanceof Cash) {
+                writer.write("Cash Payment ID, Final Price");
+            } else if (item instanceof Installment) {
+                writer.write("Installment Payment ID, Total Amount, Downpayment, Interest Rate, Number of Years");
+            }
+            // Add headers for other classes similarly
+            writer.newLine();
         }
-        // Add headers for other classes similarly
-        writer.newLine();
     }
 
     /**
@@ -272,8 +305,16 @@ public class AdminMain extends javax.swing.JFrame {
     private void GenerateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateReportButtonActionPerformed
         // TODO add your handling code here:
         ArrayList<IData> allData = new ArrayList<>();
-
+        allData.addAll(Read.getEmployees());
+        allData.addAll(Read.getBuyers());
+        allData.addAll(Read.getProperties());
+        allData.addAll(Read.getReservations());
+        allData.addAll(Read.getOffers());
+        allData.addAll(Read.getTransactions());
         
+        CSVReportGenerator reportGenerator = new CSVReportGenerator();
+        
+        reportGenerator.generateCSVReport(allData, "Admin_ReportGenerated.csv");
         
     }//GEN-LAST:event_GenerateReportButtonActionPerformed
 
