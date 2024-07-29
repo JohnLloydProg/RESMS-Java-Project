@@ -87,8 +87,9 @@ public class GradientPanel extends JPanel {
        return false;
     }
 };
-        jTable2.setModel(model);
+        OffersTable.setModel(model);
         }
+        OffersTable.getTableHeader().setResizingAllowed(false);
     }
 
     /**
@@ -118,7 +119,7 @@ public class GradientPanel extends JPanel {
         OfferInfo = new javax.swing.JPanel();
         OfferInfoText = new javax.swing.JLabel();
         OfferList = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        OffersTable = new javax.swing.JTable();
         SelectBuyers = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
@@ -261,7 +262,7 @@ public class GradientPanel extends JPanel {
         OfferInfoText.setFocusable(false);
         OfferInfoText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        OffersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -287,16 +288,16 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setColumnSelectionAllowed(true);
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        OfferList.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        OffersTable.setCellSelectionEnabled(false);
+        OffersTable.setGridColor(new java.awt.Color(255, 255, 255));
+        OffersTable.getTableHeader().setReorderingAllowed(false);
+        OfferList.setViewportView(OffersTable);
+        OffersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (OffersTable.getColumnModel().getColumnCount() > 0) {
+            OffersTable.getColumnModel().getColumn(0).setResizable(false);
+            OffersTable.getColumnModel().getColumn(1).setResizable(false);
+            OffersTable.getColumnModel().getColumn(2).setResizable(false);
+            OffersTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout OfferInfoLayout = new javax.swing.GroupLayout(OfferInfo);
@@ -461,8 +462,8 @@ public class GradientPanel extends JPanel {
     private void RejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonActionPerformed
         Delete delete = new Delete();
         int column = 0;
-        int row = jTable2.getSelectedRow();
-        String value2 = jTable2.getModel().getValueAt(row, column).toString();
+        int row = OffersTable.getSelectedRow();
+        String value2 = OffersTable.getModel().getValueAt(row, column).toString();
         String id2 = value2.replaceAll("[^0-9]", ""); 
         
 
@@ -494,8 +495,8 @@ public class GradientPanel extends JPanel {
         String id = value.replaceAll("[^0-9]", ""); // regular expression
         
         int column = 0;
-        int row = jTable2.getSelectedRow();
-        String value2 = jTable2.getModel().getValueAt(row, column).toString();
+        int row = OffersTable.getSelectedRow();
+        String value2 = OffersTable.getModel().getValueAt(row, column).toString();
         String id2 = value2.replaceAll("[^0-9]", ""); 
         
         String value3 = SelectAgent.getSelectedItem().toString();
@@ -577,6 +578,7 @@ public class GradientPanel extends JPanel {
     private javax.swing.JPanel OfferInfo;
     private javax.swing.JLabel OfferInfoText;
     private javax.swing.JScrollPane OfferList;
+    private javax.swing.JTable OffersTable;
     private javax.swing.JButton RejectButton;
     private javax.swing.JComboBox<String> SelectAgent;
     private javax.swing.JComboBox<String> SelectBuyers;
@@ -589,7 +591,6 @@ public class GradientPanel extends JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
