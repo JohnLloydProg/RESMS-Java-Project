@@ -76,7 +76,7 @@ public class GradientPanel extends JPanel {
         for(int i =0; i < Offers.size(); i++){
             data[i][0] = Offers.get(i).getId();
             data[i][1] = "Block " + Offers.get(i).getCurrentProperty().getBlock() + " Lot " + Offers.get(i).getCurrentProperty().getLot();
-            data[i][2] = Offers.get(i).getPaymentMethod().getPaymentDetails();
+            data[i][2] = String.valueOf(Offers.get(i).getPaymentMethod().getFinalPrice());
             data[i][3] = Offers.get(i).getCurrency();
         }
         DefaultTableModel model = new DefaultTableModel(data,columns) {
@@ -287,6 +287,7 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setColumnSelectionAllowed(true);
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
         jTable2.getTableHeader().setReorderingAllowed(false);
         OfferList.setViewportView(jTable2);
