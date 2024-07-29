@@ -4,6 +4,7 @@ package com.RESMS.myapps;
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Employee;
 import com.RESMS.mainMenu.MainMenu;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -158,6 +159,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,7 +266,7 @@ public class Login extends javax.swing.JFrame {
                         AdminMain newForm = new AdminMain(); 
                         newForm.setVisible(true);
                     } else {
-                        AdminMain newForm = new AdminMain(); 
+                        MenuFrame newForm = new MenuFrame(); 
                         newForm.setVisible(true);
                     }
 

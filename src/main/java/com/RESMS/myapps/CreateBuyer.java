@@ -6,6 +6,7 @@ package com.RESMS.myapps;
 
 import com.RESMS.libs.fileSystem.Add;
 import com.RESMS.libs.object.Buyer;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -250,6 +251,7 @@ public class GradientPanel extends JPanel {
         BuyerInfoForm.add(LastName);
 
         NotificationLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NotificationLabel.setForeground(new java.awt.Color(204, 0, 0));
         NotificationLabel.setPreferredSize(new java.awt.Dimension(1070, 35));
         BuyerInfoForm.add(NotificationLabel);
 
@@ -319,6 +321,9 @@ public class GradientPanel extends JPanel {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void MenuButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseExited

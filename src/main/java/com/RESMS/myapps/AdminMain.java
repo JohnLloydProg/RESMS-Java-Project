@@ -4,10 +4,26 @@
  */
 package com.RESMS.myapps;
 
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
+import com.RESMS.libs.object.Cash;
+import com.RESMS.libs.object.Employee;
+import com.RESMS.libs.object.IData;
+import com.RESMS.libs.object.Installment;
+import com.RESMS.libs.object.Offer;
+import com.RESMS.libs.object.PaymentMethod;
+import com.RESMS.libs.object.Property;
+import com.RESMS.libs.object.Reservation;
+import com.RESMS.libs.object.Transaction;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -35,8 +51,84 @@ public class AdminMain extends javax.swing.JFrame {
         g2d.dispose();
         }
     }
+    
     public AdminMain() {
         initComponents();
+    }
+    
+    public class CSVReportGenerator{
+        
+    public void generateCSVReport(ArrayList<IData> items, String filePath) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                Class<?> currentClass = null;
+                ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
+
+                // for non-offer items; get payment method
+                for (IData item : items) {
+                    if (item instanceof Offer) {
+                        Offer offer = (Offer) item;
+                        paymentMethods.add(offer.getPaymentMethod());
+                        if (currentClass == null || !item.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, item);
+                            currentClass = item.getClass();
+                        }
+                        writer.write(offer.toCSV());
+                        writer.newLine();
+                    } else {
+                        if (currentClass == null || !item.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, item);
+                            currentClass = item.getClass();
+                        }
+                        writer.write(item.toCSV());
+                        writer.newLine();
+                    }
+                }
+
+                // for payment method
+                if (!paymentMethods.isEmpty()) {
+                    writer.newLine();
+                    currentClass = null; // reset current class
+                    for (PaymentMethod paymentMethod : paymentMethods) {
+                        if (currentClass == null || !paymentMethod.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, paymentMethod);
+                            currentClass = paymentMethod.getClass();
+                        }
+                        writer.write(paymentMethod.toCSV());
+                        writer.newLine();
+                    }
+                }
+
+                System.out.println("CSV report generated successfully.");
+            } catch (IOException e) {
+                System.out.println("An error occurred while generating the CSV report.");
+                e.printStackTrace();
+            }
+        } 
+
+    private void writeHeader(BufferedWriter writer, Object item) throws IOException {
+            if (item instanceof Employee) {
+                writer.write("Employee ID, Last Name, First Name, Credentials, Password");
+            } else if (item instanceof Buyer) {
+                writer.write("Buyer ID, Last Name, First Name");
+            } else if (item instanceof Property) {
+                writer.write("Property ID, Owner, Lot, Block, SRP, Size, Description, Reservation");
+            } else if (item instanceof Reservation) {
+                writer.write("Reservation ID, Buyer ID, Price, Due Date");
+            } else if (item instanceof Offer) {
+                writer.write("Offer ID, Currency, Property ID");
+            } else if (item instanceof Transaction) {
+                writer.write("Transaction ID, Agent ID, Buyer ID, Offer ID");
+            } else if (item instanceof Cash) {
+                writer.write("Cash Payment ID, Final Price");
+            } else if (item instanceof Installment) {
+                writer.write("Installment Payment ID, Total Amount, Downpayment, Interest Rate, Number of Years");
+            }
+            // Add headers for other classes similarly
+            writer.newLine();
+        }
     }
 
     /**
@@ -202,6 +294,9 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void RegisterNewAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterNewAgentButtonActionPerformed
@@ -213,6 +308,17 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void GenerateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateReportButtonActionPerformed
         // TODO add your handling code here:
+        ArrayList<IData> allData = new ArrayList<>();
+        allData.addAll(Read.getEmployees());
+        allData.addAll(Read.getBuyers());
+        allData.addAll(Read.getProperties());
+        allData.addAll(Read.getReservations());
+        allData.addAll(Read.getOffers());
+        allData.addAll(Read.getTransactions());
+        
+        CSVReportGenerator reportGenerator = new CSVReportGenerator();
+        
+        reportGenerator.generateCSVReport(allData, "Admin_ReportGenerated.csv");
         
     }//GEN-LAST:event_GenerateReportButtonActionPerformed
 
@@ -241,6 +347,54 @@ public class AdminMain extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

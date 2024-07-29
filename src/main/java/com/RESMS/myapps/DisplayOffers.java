@@ -11,6 +11,7 @@ import com.RESMS.libs.object.Buyer;
 import com.RESMS.libs.object.Employee;
 import com.RESMS.libs.object.Offer;
 import com.RESMS.libs.object.Transaction;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -75,7 +76,7 @@ public class GradientPanel extends JPanel {
         for(int i =0; i < Offers.size(); i++){
             data[i][0] = Offers.get(i).getId();
             data[i][1] = "Block " + Offers.get(i).getCurrentProperty().getBlock() + " Lot " + Offers.get(i).getCurrentProperty().getLot();
-            data[i][2] = Offers.get(i).getPaymentMethod().getPaymentDetails();
+            data[i][2] = String.valueOf(Offers.get(i).getPaymentMethod().getFinalPrice());
             data[i][3] = Offers.get(i).getCurrency();
         }
         DefaultTableModel model = new DefaultTableModel(data,columns) {
@@ -126,6 +127,7 @@ public class GradientPanel extends JPanel {
         CreateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("RESMS | ASCEND - Display Offers");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
@@ -285,6 +287,7 @@ public class GradientPanel extends JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setColumnSelectionAllowed(true);
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
         jTable2.getTableHeader().setReorderingAllowed(false);
         OfferList.setViewportView(jTable2);
@@ -323,6 +326,7 @@ public class GradientPanel extends JPanel {
         jLabel1.setPreferredSize(new java.awt.Dimension(69, 25));
 
         label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label.setForeground(new java.awt.Color(204, 0, 0));
         label.setPreferredSize(new java.awt.Dimension(69, 25));
 
         SelectAgent.setPreferredSize(new java.awt.Dimension(455, 35));
@@ -383,12 +387,10 @@ public class GradientPanel extends JPanel {
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 2541, Short.MAX_VALUE)
             .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Arrow)
+                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Arrow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ListOfOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                    .addComponent(label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -427,6 +429,9 @@ public class GradientPanel extends JPanel {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void MenuButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseExited

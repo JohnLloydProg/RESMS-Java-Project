@@ -7,6 +7,8 @@ package com.RESMS.myapps;
 import com.RESMS.libs.fileSystem.Delete;
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Buyer;
+import com.RESMS.libs.object.Transaction;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -91,6 +93,7 @@ public void populateTable(){
         BuyerInfoLabel = new javax.swing.JLabel();
         BuyerList = new javax.swing.JScrollPane();
         BuyersTable = new javax.swing.JTable();
+        Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RESMS | ASCEND - Display Buyers");
@@ -289,27 +292,36 @@ public void populateTable(){
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Label.setBackground(new java.awt.Color(255, 255, 255));
+        Label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Label.setForeground(new java.awt.Color(204, 0, 51));
+        Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Label.setFocusable(false);
+        Label.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout DashboardBackgroundLayout = new javax.swing.GroupLayout(DashboardBackground);
         DashboardBackground.setLayout(DashboardBackgroundLayout);
         DashboardBackgroundLayout.setHorizontalGroup(
             DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                 .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(56, 56, 56)
+                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                                 .addComponent(Arrow)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardBackgroundLayout.createSequentialGroup()
                         .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 465, Short.MAX_VALUE))
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 809, Short.MAX_VALUE))))
         );
         DashboardBackgroundLayout.setVerticalGroup(
             DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,17 +330,19 @@ public void populateTable(){
                 .addGap(61, 61, 61)
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Arrow)
-                    .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4))
+                    .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                        .addGap(632, 632, 632)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BuyerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))
+                    .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1705, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,6 +364,9 @@ public void populateTable(){
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void MenuButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseExited
@@ -375,15 +392,28 @@ public void populateTable(){
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        int column = 0;
-        int row = BuyersTable.getSelectedRow();
-        String value = BuyersTable.getModel().getValueAt(row, column).toString();
-        String id = value.replaceAll("[^0-9]", ""); // regular expression
-        // Replace all the letters
-        Delete deleteAction = new Delete();
-        Buyer toBeDeleted = Read.getBuyer(Integer.valueOf(id));
-        deleteAction.item(toBeDeleted);
-        populateTable();
+        int column = 0; 
+        int row = BuyersTable.getSelectedRow(); 
+        String value = BuyersTable.getModel().getValueAt(row, column).toString(); 
+        String id = value.replaceAll("[^0-9]", ""); // regular expression 
+        ArrayList<Transaction> Transactions = Read.getTransactions(); 
+        boolean check = false; 
+        for(Transaction transaction : Transactions){ 
+            if(transaction.getBuyer().getId().equals(value)){ 
+                check = true; 
+            } 
+        } 
+        //if already a part of the transaction dont accept 
+        if(check){ 
+            Label.setText("Buyer is part of a Transaction!"); 
+        } 
+        else{ 
+        // Replace all the letters 
+        Delete deleteAction = new Delete(); 
+        Buyer toBeDeleted = Read.getBuyer(Integer.valueOf(id)); 
+        deleteAction.item(toBeDeleted); 
+        populateTable(); 
+        }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
@@ -448,6 +478,7 @@ public void populateTable(){
     private javax.swing.JButton CreateButton;
     private javax.swing.JPanel DashboardBackground;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JLabel Label;
     private javax.swing.JLabel ListOfBuyers;
     private javax.swing.JButton ManageBuyerButton;
     private javax.swing.JPanel Menu;

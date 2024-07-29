@@ -1,4 +1,3 @@
-B-0,Unida,John Lloyd
 B-1,Cruz,Gabriel
 B-2,Relacion,Egvert
 B-3,Shem,Keane
