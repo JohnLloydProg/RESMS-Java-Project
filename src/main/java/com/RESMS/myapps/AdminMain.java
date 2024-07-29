@@ -118,7 +118,7 @@ public class AdminMain extends javax.swing.JFrame {
             } else if (item instanceof Reservation) {
                 writer.write("Reservation ID, Buyer ID, Price, Due Date");
             } else if (item instanceof Offer) {
-                writer.write("Offer ID, Discount, Currency, Property ID");
+                writer.write("Offer ID, Currency, Property ID");
             } else if (item instanceof Transaction) {
                 writer.write("Transaction ID, Agent ID, Buyer ID, Offer ID");
             } else if (item instanceof Cash) {
