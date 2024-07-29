@@ -1,10 +1,14 @@
 package com.RESMS.myapps;
 
 
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Employee;
+import com.RESMS.mainMenu.MainMenu;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /*
@@ -136,6 +140,11 @@ public class Login extends javax.swing.JFrame {
         PasswordLabel.setText("Password");
 
         Password.setText("jPasswordField1");
+        Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordActionPerformed(evt);
+            }
+        });
 
         SubmitButton.setBackground(new java.awt.Color(36, 79, 99));
         SubmitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -181,8 +190,8 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NotificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout DashboardBackgroundLayout = new javax.swing.GroupLayout(DashboardBackground);
@@ -237,7 +246,41 @@ public class Login extends javax.swing.JFrame {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
+        String username = Username.getText();
+        String password = new String(Password.getPassword()).trim();
+        
+        if (username.isEmpty() || password.isEmpty()) {
+            NotificationLabel.setText("Username or Password cannot be empty.");
+            return;
+        }
+        
+        ArrayList<Employee> employees = Read.getEmployees();
+        boolean isAuthenticated = false;
+        
+        for(Employee employee : employees){     
+            if(username.equals(employee.getUserName()) && password.equals(employee.getPassword())){
+                    isAuthenticated = true;
+                    if ("Admin".equals(employee.getCredentials())) {
+                        AdminMain newForm = new AdminMain(); 
+                        newForm.setVisible(true);
+                    } else {
+                        AdminMain newForm = new AdminMain(); 
+                        newForm.setVisible(true);
+                    }
+
+                    dispose();
+                    break;
+            }   
+        }
+
+        if (!isAuthenticated) {
+            NotificationLabel.setText("Invalid Username or Password.");
+        }      
     }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordActionPerformed
 
     /**
      * @param args the command line arguments

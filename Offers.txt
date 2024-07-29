@@ -1,1 +1,1 @@
-O-1,US Dollar,P-3
+O-1,0.0,US Dollar,P-1

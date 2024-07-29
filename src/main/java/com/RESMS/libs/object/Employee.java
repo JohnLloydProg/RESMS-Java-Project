@@ -16,11 +16,10 @@ public class Employee implements IData {
     private String credentials;
     private String password;
 
-    public Employee(String lastName, String firstName, String credentials, String password) {
+    public Employee(String lastName, String firstName, String credentials) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.credentials = credentials;
-        this.password = password;
     }
     
     public String getLastName() {
@@ -40,12 +39,17 @@ public class Employee implements IData {
     }
     
     public String getUserName() {
-        String userName = "";
-        for (String firstNames : this.firstName.split(" ")) {
-            userName += firstNames.substring(0, 0);
+        StringBuilder userName = new StringBuilder();
+        
+        for (String firstName : this.firstName.split(" ")) {
+            if (!firstName.isEmpty()) {
+                userName.append(firstName.substring(0, 1).toLowerCase()); //first letter to lowercase
+            }
         }
-        userName += this.lastName;
-        return userName;
+
+        userName.append(this.lastName.toLowerCase()); // lastname to lowercase
+
+        return userName.toString(); //like this -> rmorales
     }
 
     public String getId() {
