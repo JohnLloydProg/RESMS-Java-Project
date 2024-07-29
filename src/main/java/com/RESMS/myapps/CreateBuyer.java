@@ -359,7 +359,16 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_LastNameActionPerformed
 
     private void SaveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButton1ActionPerformed
-        // TODO add your handling code here:
+    if (FirstName.getText().equals("")||LastName.getText().equals("")){ 
+                NotificationLabel.setText("Fill out all Fields!"); 
+            }else{ 
+                String fName = FirstName.getText(); 
+                String lName = LastName.getText(); 
+                Buyer newBuyer = new Buyer(lName, fName); 
+                Add addAction = new Add(); 
+                newBuyer.fileAction(addAction); 
+                NotificationLabel.setText("Buyer added successfully!"); 
+            }
     }//GEN-LAST:event_SaveButton1ActionPerformed
 
     /**
