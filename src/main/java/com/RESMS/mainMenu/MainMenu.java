@@ -6,10 +6,14 @@ package com.RESMS.mainMenu;
 
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Property;
-import java.awt.CardLayout;
+import com.RESMS.myapps.DisplayBuyers;
+import com.RESMS.myapps.DisplayOffers;
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -21,6 +25,25 @@ public class MainMenu extends javax.swing.JPanel {
     /**
      * Creates new form MainMenu1
      */
+    public class GradientPanel extends JPanel {
+
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D)g.create();
+            int w = getWidth();
+            int h = getHeight();
+
+            GradientPaint gp = new GradientPaint(
+                    0, 0, new Color(2, 48, 71),
+                    0, h, new Color(142, 202, 230));
+
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, w, h);
+
+            g2d.dispose();
+        }
+    }
     public MainMenu(MenuFrame frame) {
         initComponents();
         this.jPanel1.setLayout(null);
@@ -39,9 +62,9 @@ public class MainMenu extends javax.swing.JPanel {
                     if (!properties.isEmpty()) {
                         button = new PropertyButton(properties.get(0));
                         this.jPanel1.add(button);
-                        button.setSize(55, 55);
+                        button.setSize(90, 90);
                         button.setFont(new java.awt.Font("Inter_FXH", 0, 10));
-                        button.setLocation(10 + (65 * i), 10 + (65 * j) + (170 * block));
+                        button.setLocation(20 + (100 * i), 20 + (100 * j) + (250 * block));
                         button.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
                             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -77,155 +100,283 @@ public class MainMenu extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        OfferInfoText = new javax.swing.JLabel();
         filterBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        offerBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new GradientComponent();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Menu = new GradientPanel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 40), new java.awt.Dimension(200, 200));
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 10), new java.awt.Dimension(200, 200));
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 2), new java.awt.Dimension(200, 200));
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(200, 200), new java.awt.Dimension(379, 10), new java.awt.Dimension(200, 200));
+        MenuButton = new javax.swing.JButton();
+        ManageBuyerButton = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         reportBtn = new javax.swing.JButton();
+        offerBtn = new javax.swing.JButton();
+        ListOfBuyers = new javax.swing.JLabel();
+        Arrow = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        setPreferredSize(new java.awt.Dimension(1600, 900));
 
         jPanel2.setBackground(new java.awt.Color(241, 241, 241));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(660, 830));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1040, 1230));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 671, Short.MAX_VALUE)
+            .addGap(0, 1049, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 1230, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jPanel1);
 
-        filterBtn.setBackground(new java.awt.Color(142, 202, 230));
-        filterBtn.setFont(new java.awt.Font("Inter_FXH", 0, 18)); // NOI18N
-        filterBtn.setLabel("Filter");
+        OfferInfoText.setBackground(new java.awt.Color(255, 255, 255));
+        OfferInfoText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        OfferInfoText.setForeground(new java.awt.Color(2, 48, 71));
+        OfferInfoText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        OfferInfoText.setText("Display of Properties");
+        OfferInfoText.setFocusable(false);
+        OfferInfoText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        filterBtn.setBackground(new java.awt.Color(36, 79, 99));
+        filterBtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        filterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        filterBtn.setText("Filter");
+        filterBtn.setBorder(null);
         filterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 filterBtnMouseClicked(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Inter_FXH", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(2, 48, 71));
-        jLabel2.setText("Display of Properties");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(OfferInfoText, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(OfferInfoText)
+                    .addComponent(filterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        offerBtn.setBackground(new java.awt.Color(142, 202, 230));
-        offerBtn.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
-        offerBtn.setText("Offer Management");
+        Menu.setBackground(new java.awt.Color(2, 48, 71));
+        Menu.setMaximumSize(new java.awt.Dimension(379, 900));
+        Menu.setMinimumSize(new java.awt.Dimension(379, 900));
+        Menu.setPreferredSize(new java.awt.Dimension(379, 900));
+        Menu.add(filler4);
 
-        jLabel1.setFont(new java.awt.Font("Inter_FXH", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(2, 48, 71));
-        jLabel1.setText("Properties");
+        jLabel3.setFont(new java.awt.Font("Segoe UI Variable", 1, 55)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-chimney.png"))); // NOI18N
+        jLabel3.setText("ASCEND");
+        jLabel3.setIconTextGap(15);
+        Menu.add(jLabel3);
 
-        jButton1.setBackground(new java.awt.Color(33, 158, 188));
-        jButton1.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Main Menu");
+        jLabel5.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("PROPERTIES");
+        jLabel5.setIconTextGap(15);
+        Menu.add(jLabel5);
+        Menu.add(filler7);
 
-        jButton2.setBackground(new java.awt.Color(33, 158, 188));
-        jButton2.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Manage Buyers");
+        filler5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        Menu.add(filler5);
+        Menu.add(filler6);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        MenuButton.setBackground(new java.awt.Color(61, 131, 164));
+        MenuButton.setFont(MenuButton.getFont().deriveFont(MenuButton.getFont().getStyle() | java.awt.Font.BOLD, MenuButton.getFont().getSize()+12));
+        MenuButton.setForeground(new java.awt.Color(255, 255, 255));
+        MenuButton.setText("     Main Menu");
+        MenuButton.setToolTipText("");
+        MenuButton.setBorder(null);
+        MenuButton.setBorderPainted(false);
+        MenuButton.setContentAreaFilled(false);
+        MenuButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MenuButton.setMinimumSize(new java.awt.Dimension(379, 59));
+        MenuButton.setPreferredSize(new java.awt.Dimension(379, 59));
+        MenuButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MenuButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MenuButtonMouseExited(evt);
+            }
+        });
+        Menu.add(MenuButton);
 
-        reportBtn.setBackground(new java.awt.Color(142, 202, 230));
-        reportBtn.setFont(new java.awt.Font("Inter_FXH", 0, 24)); // NOI18N
+        ManageBuyerButton.setBackground(new java.awt.Color(61, 131, 134));
+        ManageBuyerButton.setFont(ManageBuyerButton.getFont().deriveFont(ManageBuyerButton.getFont().getStyle() | java.awt.Font.BOLD, ManageBuyerButton.getFont().getSize()+12));
+        ManageBuyerButton.setForeground(new java.awt.Color(255, 255, 255));
+        ManageBuyerButton.setText("     Manage Buyers");
+        ManageBuyerButton.setBorder(null);
+        ManageBuyerButton.setBorderPainted(false);
+        ManageBuyerButton.setContentAreaFilled(false);
+        ManageBuyerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ManageBuyerButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ManageBuyerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ManageBuyerButton.setMinimumSize(new java.awt.Dimension(379, 59));
+        ManageBuyerButton.setPreferredSize(new java.awt.Dimension(379, 59));
+        ManageBuyerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ManageBuyerButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ManageBuyerButtonMouseExited(evt);
+            }
+        });
+        ManageBuyerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageBuyerButtonActionPerformed(evt);
+            }
+        });
+        Menu.add(ManageBuyerButton);
+        Menu.add(filler1);
+
+        reportBtn.setBackground(new java.awt.Color(36, 79, 99));
+        reportBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        reportBtn.setForeground(new java.awt.Color(255, 255, 255));
         reportBtn.setText("Generate Report");
+        reportBtn.setBorder(null);
+        reportBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportBtnMouseClicked(evt);
+            }
+        });
+
+        offerBtn.setBackground(new java.awt.Color(36, 79, 99));
+        offerBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        offerBtn.setForeground(new java.awt.Color(255, 255, 255));
+        offerBtn.setText("Offer Management");
+        offerBtn.setBorder(null);
+        offerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                offerBtnMouseClicked(evt);
+            }
+        });
+
+        ListOfBuyers.setFont(new java.awt.Font("Segoe UI", 1, 64)); // NOI18N
+        ListOfBuyers.setForeground(new java.awt.Color(2, 48, 71));
+        ListOfBuyers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/angle-small-right.png"))); // NOI18N
+        ListOfBuyers.setIconTextGap(7);
+
+        Arrow.setFont(new java.awt.Font("Segoe UI", 1, 64)); // NOI18N
+        Arrow.setForeground(new java.awt.Color(2, 48, 71));
+        Arrow.setText("Properties");
+        Arrow.setIconTextGap(7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(offerBtn)
-                            .addGap(83, 83, 83)
-                            .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(offerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Arrow)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Arrow)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ListOfBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addGap(34, 34, 34)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(offerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(offerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MenuButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseEntered
+        this.MenuButton.setBackground(new Color(36, 79, 99 ));
+        this.MenuButton.setContentAreaFilled(true);
+    }//GEN-LAST:event_MenuButtonMouseEntered
+
+    private void MenuButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseExited
+        this.MenuButton.setContentAreaFilled(false);
+    }//GEN-LAST:event_MenuButtonMouseExited
+
+    private void ManageBuyerButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageBuyerButtonMouseEntered
+        this.ManageBuyerButton.setBackground(new Color(36, 79, 99 ));
+        this.ManageBuyerButton.setContentAreaFilled(true);
+    }//GEN-LAST:event_ManageBuyerButtonMouseEntered
+
+    private void ManageBuyerButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageBuyerButtonMouseExited
+        this.ManageBuyerButton.setContentAreaFilled(false);
+    }//GEN-LAST:event_ManageBuyerButtonMouseExited
+
+    private void ManageBuyerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageBuyerButtonActionPerformed
+        DisplayBuyers newForm = new DisplayBuyers();
+        newForm.setVisible(true);
+        this.frame.dispose();
+    }//GEN-LAST:event_ManageBuyerButtonActionPerformed
+
     private void filterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterBtnMouseClicked
-        FilterProperties filterForm = new FilterProperties(this);
-        filterForm.setVisible(true);
+        new FilterProperties(this).setVisible(true);
     }//GEN-LAST:event_filterBtnMouseClicked
+
+    private void offerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_offerBtnMouseClicked
+        new DisplayOffers().setVisible(true);
+        this.frame.dispose();
+    }//GEN-LAST:event_offerBtnMouseClicked
+
+    private void reportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportBtnMouseClicked
+        new Report().setVisible(true);
+    }//GEN-LAST:event_reportBtnMouseClicked
+
+    private void MenuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuButtonMouseClicked
+        this.frame.cardLayout.show(this.frame.container, "Main Menu");
+        ((MainMenu) this.frame.getPanel("Main Menu")).initPropertiesButton();
+    }//GEN-LAST:event_MenuButtonMouseClicked
     
     private void propertyBtnClicked(java.awt.event.MouseEvent evt) {
         PropertyButton myButton = (PropertyButton)evt.getSource();
@@ -243,14 +394,22 @@ public class MainMenu extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Arrow;
+    private javax.swing.JLabel ListOfBuyers;
+    private javax.swing.JButton ManageBuyerButton;
+    private javax.swing.JPanel Menu;
+    private javax.swing.JButton MenuButton;
+    private javax.swing.JLabel OfferInfoText;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
+    private javax.swing.Box.Filler filler7;
     private javax.swing.JButton filterBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton offerBtn;
     private javax.swing.JButton reportBtn;

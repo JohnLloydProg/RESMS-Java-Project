@@ -27,8 +27,10 @@ public class MenuFrame extends javax.swing.JFrame {
      */
     public MenuFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.cardLayout = new CardLayout();
         this.container = new JPanel();
+        this.container.setSize(new java.awt.Dimension(1600, 900));
         this.container.setLayout(this.cardLayout);
         this.container.setName("Container");
         
@@ -88,9 +90,9 @@ public class MenuFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
-        setSize(new java.awt.Dimension(1080, 720));
+        setSize(new java.awt.Dimension(1600, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

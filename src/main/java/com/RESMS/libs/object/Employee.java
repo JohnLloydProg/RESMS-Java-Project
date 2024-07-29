@@ -15,11 +15,20 @@ public class Employee implements IData {
     private int id;
     private String credentials;
     private String password;
+    private static Employee user;
 
     public Employee(String lastName, String firstName, String credentials) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.credentials = credentials;
+    }
+    
+    public static void setUser(Employee new_user) {
+        user = new_user;
+    }
+    
+    public static Employee getUser() {
+        return user;
     }
     
     public String getLastName() {

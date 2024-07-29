@@ -23,26 +23,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DisplayBuyers extends javax.swing.JFrame {
 
-public class GradientPanel extends JPanel {
+    public class GradientPanel extends JPanel {
 
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)g.create();
-        int w = getWidth();
-        int h = getHeight();
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D)g.create();
+            int w = getWidth();
+            int h = getHeight();
 
-        GradientPaint gp = new GradientPaint(
-                0, 0, new Color(2, 48, 71),
-                0, h, new Color(142, 202, 230));
+            GradientPaint gp = new GradientPaint(
+                    0, 0, new Color(2, 48, 71),
+                    0, h, new Color(142, 202, 230));
 
-        g2d.setPaint(gp);
-        g2d.fillRect(0, 0, w, h);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, w, h);
 
-        g2d.dispose();
+            g2d.dispose();
+        }
     }
-}
-public void populateTable(){ 
+    public void populateTable(){ 
         ArrayList<Buyer> Buyers = Read.getBuyers(); 
         String columns[] = {"Buyer ID","First Name","Last Name"}; 
         String data[][] = new String[Buyers.size()][3]; 

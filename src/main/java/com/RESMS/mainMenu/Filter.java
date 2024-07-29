@@ -27,21 +27,40 @@ public class Filter {
         this.state = state;
     }
     
-    public boolean checkSize(double size) {
-        if (!this.minSize.isBlank() && !this.maxSize.isBlank()) {
-            return ((size >= Double.parseDouble(this.minSize)) && (size <= Double.parseDouble(this.maxSize)));
+    public boolean checkMinSize(double size) {
+        if (!this.minSize.isBlank()) {
+            return (size >= Double.parseDouble(this.minSize));
         }else {
             return true;
         }
         
     }
     
-    public boolean checkPrice(double price) {
-        if (!this.minPrice.isBlank() && !this.maxPrice.isBlank()) {
-            return ((price >= Double.parseDouble(this.minPrice)) && (price <= Double.parseDouble(this.maxPrice)));
+    public boolean checkMaxSize(double size) {
+        if (!this.maxSize.isBlank()) {
+            return (size <= Double.parseDouble(this.maxSize));
         }else {
             return true;
         }
+        
+    }
+    
+    public boolean checkMinPrice(double price) {
+        if (!this.minPrice.isBlank()) {
+            return (price >= Double.parseDouble(this.minPrice));
+        }else {
+            return true;
+        }
+        
+    }
+    
+    public boolean checkMaxPrice(double price) {
+        if (!this.maxPrice.isBlank()) {
+            return (price <= Double.parseDouble(this.maxPrice));
+        }else {
+            return true;
+        }
+        
     }
     
     public boolean checkBlock(int block) {

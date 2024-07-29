@@ -5,12 +5,14 @@
 package com.RESMS.myapps;
 
 import com.RESMS.libs.fileSystem.Add;
+import com.RESMS.libs.fileSystem.Update;
 import com.RESMS.libs.fileSystem.Delete;
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Buyer;
 import com.RESMS.libs.object.Employee;
 import com.RESMS.libs.object.Offer;
 import com.RESMS.libs.object.Transaction;
+import com.RESMS.libs.object.Property;
 import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -49,7 +51,6 @@ public class GradientPanel extends JPanel {
         initComponents();
         populateTable();
         setBuyers();
-        setAgent();
     }
     
     public void setBuyers(){
@@ -59,12 +60,6 @@ public class GradientPanel extends JPanel {
         }
     }
     
-    public void setAgent(){
-        ArrayList<Employee> Employees = Read.getEmployees();
-        for(Employee employee : Employees){
-            SelectAgent.addItem(employee.getId());
-        }
-    }
     public void populateTable(){
         ArrayList<Offer> Offers = Read.getOffers();
         if(Offers.isEmpty()){
@@ -122,8 +117,6 @@ public class GradientPanel extends JPanel {
         SelectBuyers = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
-        SelectAgent = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         CreateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,9 +143,9 @@ public class GradientPanel extends JPanel {
         RejectButton.setForeground(new java.awt.Color(255, 255, 255));
         RejectButton.setText("REJECT");
         RejectButton.setBorder(null);
-        RejectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RejectButtonActionPerformed(evt);
+        RejectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RejectButtonMouseClicked(evt);
             }
         });
 
@@ -161,9 +154,9 @@ public class GradientPanel extends JPanel {
         AcceptButton.setForeground(new java.awt.Color(255, 255, 255));
         AcceptButton.setText("ACCEPT");
         AcceptButton.setBorder(null);
-        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptButtonActionPerformed(evt);
+        AcceptButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AcceptButtonMouseClicked(evt);
             }
         });
 
@@ -329,12 +322,6 @@ public class GradientPanel extends JPanel {
         label.setForeground(new java.awt.Color(204, 0, 0));
         label.setPreferredSize(new java.awt.Dimension(69, 25));
 
-        SelectAgent.setPreferredSize(new java.awt.Dimension(455, 35));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Select Agent:");
-        jLabel4.setPreferredSize(new java.awt.Dimension(69, 25));
-
         CreateButton.setBackground(new java.awt.Color(36, 79, 99));
         CreateButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         CreateButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -365,16 +352,10 @@ public class GradientPanel extends JPanel {
                                 .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SelectAgent, 0, 1, Short.MAX_VALUE))
-                            .addGroup(DashboardBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SelectBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SelectBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
                         .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,22 +375,17 @@ public class GradientPanel extends JPanel {
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(OfferInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SelectBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SelectAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(OfferInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DashboardBackgroundLayout.createSequentialGroup()
                         .addGap(632, 632, 632)
                         .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(SelectBuyers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(1705, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,7 +434,46 @@ public class GradientPanel extends JPanel {
        this.ManageBuyerButton.setContentAreaFilled(true);
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
-    private void RejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonActionPerformed
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+        CreateOffer newForm = new CreateOffer(); 
+        newForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void AcceptButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcceptButtonMouseClicked
+        Add add = new Add();
+        String value = SelectBuyers.getSelectedItem().toString();
+        String id = value.replaceAll("[^0-9]", ""); // regular expression
+        
+        int column = 0;
+        int row = jTable2.getSelectedRow();
+        String value2 = jTable2.getModel().getValueAt(row, column).toString();
+        String id2 = value2.replaceAll("[^0-9]", ""); 
+        
+        //check if offer is already a part of the transaction.
+        ArrayList<Transaction> Transactions = Read.getTransactions();
+        boolean check = false;
+        
+        for(Transaction transaction : Transactions){
+            if(transaction.getOffer().getId().equals(value2)){
+                check = true;
+            }
+        }
+        
+        //if already a part of the transaction dont accept
+        if(check){
+            label.setText("Offer is already part of a transaction!");
+        }else{
+            Transaction newTransaction = new Transaction(Employee.getUser(),Read.getBuyer(Integer.parseInt(id)),Read.getOffer(Integer.parseInt(id2)));
+            Property property = newTransaction.getOffer().getCurrentProperty();
+            property.setOwner(newTransaction.getBuyer());
+            add.item(newTransaction);
+            property.fileAction(new Update());
+            label.setText("Offer succesfully accepted!");
+        }
+    }//GEN-LAST:event_AcceptButtonMouseClicked
+
+    private void RejectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RejectButtonMouseClicked
         Delete delete = new Delete();
         int column = 0;
         int row = jTable2.getSelectedRow();
@@ -485,47 +500,7 @@ public class GradientPanel extends JPanel {
             label.setText("Offer succesfully deleted!");
             populateTable();
         }
-    }//GEN-LAST:event_RejectButtonActionPerformed
-
-    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
-        
-        Add add = new Add();
-        String value = SelectBuyers.getSelectedItem().toString();
-        String id = value.replaceAll("[^0-9]", ""); // regular expression
-        
-        int column = 0;
-        int row = jTable2.getSelectedRow();
-        String value2 = jTable2.getModel().getValueAt(row, column).toString();
-        String id2 = value2.replaceAll("[^0-9]", ""); 
-        
-        String value3 = SelectAgent.getSelectedItem().toString();
-        String id3 = value3.replaceAll("[^0-9]", ""); // regular expression
-        
-        //check if offer is already a part of the transaction.
-        ArrayList<Transaction> Transactions = Read.getTransactions();
-        boolean check = false;
-        
-        for(Transaction transaction : Transactions){
-            if(transaction.getOffer().getId().equals(value2)){
-                check = true;
-            }
-        }
-        
-        //if already a part of the transaction dont accept
-        if(check){
-            label.setText("Offer is already part of a transaction!");
-        }else{
-            Transaction newTransaction = new Transaction(Read.getEmployee(Integer.parseInt(id3)),Read.getBuyer(Integer.parseInt(id)),Read.getOffer(Integer.parseInt(id2)));
-            add.item(newTransaction);
-            label.setText("Offer succesfully accepted!");
-        }
-    }//GEN-LAST:event_AcceptButtonActionPerformed
-
-    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        CreateOffer newForm = new CreateOffer(); 
-        newForm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_CreateButtonActionPerformed
+    }//GEN-LAST:event_RejectButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -578,7 +553,6 @@ public class GradientPanel extends JPanel {
     private javax.swing.JLabel OfferInfoText;
     private javax.swing.JScrollPane OfferList;
     private javax.swing.JButton RejectButton;
-    private javax.swing.JComboBox<String> SelectAgent;
     private javax.swing.JComboBox<String> SelectBuyers;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler4;
@@ -587,7 +561,6 @@ public class GradientPanel extends JPanel {
     private javax.swing.Box.Filler filler7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel label;

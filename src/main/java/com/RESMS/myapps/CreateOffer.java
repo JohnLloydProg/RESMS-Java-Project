@@ -25,28 +25,32 @@ import javax.swing.JPanel;
  * @author Audrize Cruz
  */
 public class CreateOffer extends javax.swing.JFrame {
+    
+    private ArrayList<Property> properties;
+    private Property property;
 
-public class GradientPanel extends JPanel {
+    public class GradientPanel extends JPanel {
 
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)g.create();
-        int w = getWidth();
-        int h = getHeight();
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D)g.create();
+            int w = getWidth();
+            int h = getHeight();
 
-        GradientPaint gp = new GradientPaint(
-                0, 0, new Color(2, 48, 71),
-                0, h, new Color(142, 202, 230));
+            GradientPaint gp = new GradientPaint(
+                    0, 0, new Color(2, 48, 71),
+                    0, h, new Color(142, 202, 230));
 
-        g2d.setPaint(gp);
-        g2d.fillRect(0, 0, w, h);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, w, h);
 
-        g2d.dispose();
+            g2d.dispose();
+        }
     }
-}
     public CreateOffer() {
         initComponents();
+        properties = Read.getProperties();
         SetProperties();
         CFinalPrice.setEnabled(true);
         Downpayment.setEnabled(false);
@@ -55,10 +59,18 @@ public class GradientPanel extends JPanel {
         TotalAmount.setEnabled(false);
     }
     
+    public void setProperty(Property property) {
+        this.property = property;
+        CFinalPrice.setText("" + this.property.getSRP());
+        TotalAmount.setText("" + this.property.getSRP());
+        PropertyTEST.setSelectedItem(this.property.getId() + ": Lot " + this.property.getLot() + " Block " + this.property.getBlock());
+    }
+    
     public void SetProperties(){
-        ArrayList<Property> Properties = Read.getProperties();
-        for(Property property : Properties){
-            PropertyTEST.addItem(property.getId());
+        String item;
+        for(Property propertyData : properties){
+            item = propertyData.getId() + ": Lot " + propertyData.getLot() + " Block " + propertyData.getBlock();
+            PropertyTEST.addItem(item);
         }
     }
     /**
@@ -143,9 +155,9 @@ public class GradientPanel extends JPanel {
         SaveButton.setForeground(new java.awt.Color(255, 255, 255));
         SaveButton.setText("SAVE");
         SaveButton.setBorder(null);
-        SaveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveButtonActionPerformed(evt);
+        SaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveButtonMouseClicked(evt);
             }
         });
 
@@ -538,36 +550,6 @@ public class GradientPanel extends JPanel {
        this.ManageBuyerButton.setContentAreaFilled(true);
     }//GEN-LAST:event_ManageBuyerButtonMouseEntered
 
-    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
-        Add add = new Add();
-        String value = PropertyTEST.getSelectedItem().toString();
-        String id = value.replaceAll("[^0-9]", ""); // regular expression
-        Property property = Read.getProperty(Integer.parseInt(id));
-        
-        if(PaymentMethod.getSelectedItem().equals("Cash")){            
-            if(CFinalPrice.getText().equals("")){
-                label.setText("Fill out all the input fields!");            }
-            else{            
-                Cash newCash = new Cash(Double.parseDouble(CFinalPrice.getText()));
-                Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);            
-                newOffer.setPaymentMethod(newCash);
-                add.item(newOffer);            
-                label.setText("Successfully Added an Offer!");
-            }            
-        }else{            
-            if(TotalAmount.getText().equals("")||Downpayment.getText().equals("")||Interest.getText().equals("")||NumberOfYears.getText().equals("")){
-                label.setText("Fill out all the input fields!");            }
-            else{            
-                Installment newInstall = new Installment(Double.parseDouble(TotalAmount.getText()),Double.parseDouble(Downpayment.getText()),Double.parseDouble(Interest.getText()),Integer.parseInt(NumberOfYears.getText()));
-                Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);            
-                newOffer.setPaymentMethod(newInstall);
-                add.item(newOffer);            
-                label.setText("Successfully Added an Offer!");
-            }            
-        }
-        
-    }//GEN-LAST:event_SaveButtonActionPerformed
-
     private void PaymentMethodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentMethodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PaymentMethodActionPerformed
@@ -619,8 +601,37 @@ public class GradientPanel extends JPanel {
     }//GEN-LAST:event_PaymentMethodItemStateChanged
 
     private void PropertyTESTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PropertyTESTActionPerformed
-        // TODO add your handling code here:
+        String id = ((String) PropertyTEST.getSelectedItem()).split(":")[0];
+        property = Read.getProperty(Integer.parseInt(id.split("-")[1]));
+        CFinalPrice.setText("" + this.property.getSRP());
+        TotalAmount.setText("" + this.property.getSRP());
     }//GEN-LAST:event_PropertyTESTActionPerformed
+
+    private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
+        Add add = new Add();
+        
+        if(PaymentMethod.getSelectedItem().equals("Cash")){            
+            if(CFinalPrice.getText().equals("")){
+                label.setText("Fill out all the input fields!");            }
+            else{            
+                Cash newCash = new Cash(Double.parseDouble(CFinalPrice.getText()));
+                Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);            
+                newOffer.setPaymentMethod(newCash);
+                add.item(newOffer);            
+                label.setText("Successfully Added an Offer!");
+            }            
+        }else{            
+            if(TotalAmount.getText().equals("")||Downpayment.getText().equals("")||Interest.getText().equals("")||NumberOfYears.getText().equals("")){
+                label.setText("Fill out all the input fields!");            }
+            else{            
+                Installment newInstall = new Installment(Double.parseDouble(TotalAmount.getText()),Double.parseDouble(Downpayment.getText()),Double.parseDouble(Interest.getText()),Integer.parseInt(NumberOfYears.getText()));
+                Offer newOffer = new Offer(Currency.getSelectedItem().toString(),property);            
+                newOffer.setPaymentMethod(newInstall);
+                add.item(newOffer);            
+                label.setText("Successfully Added an Offer!");
+            }            
+        }
+    }//GEN-LAST:event_SaveButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -713,11 +724,6 @@ public class GradientPanel extends JPanel {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateOffer().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

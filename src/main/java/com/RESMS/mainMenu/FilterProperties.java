@@ -48,6 +48,7 @@ public class FilterProperties extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Inter_FXH", 1, 14)); // NOI18N
@@ -201,13 +202,7 @@ public class FilterProperties extends javax.swing.JFrame {
         String minPriceData = this.minPriceField.getText();
         String maxPriceData = this.maxPriceField.getText();
         String blockData = this.blockField.getText();
-        if ((minSizeData.isBlank() && !maxSizeData.isBlank()) || (maxSizeData.isBlank() && !minSizeData.isBlank())) {
-            JOptionPane.showMessageDialog(this, "Fill up size requirements!");
-        }else if ((minPriceData.isBlank() && !maxPriceData.isBlank()) || (maxPriceData.isBlank() && !minPriceData.isBlank())) {
-            JOptionPane.showMessageDialog(this, "Fill up price requirements!");
-        }else {
-            this.menu.filterProperties(new Filter(minSizeData, maxSizeData, minPriceData, maxPriceData, blockData, state));
-        }
+        this.menu.filterProperties(new Filter(minSizeData, maxSizeData, minPriceData, maxPriceData, blockData, state));
     }//GEN-LAST:event_jButton2MouseClicked
 
     

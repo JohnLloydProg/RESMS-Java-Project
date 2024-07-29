@@ -3,3 +3,5 @@ O-1,Philippine Peso,P-1
 O-2,Philippine Peso,P-1
 O-3,Philippine Peso,P-1
 O-4,Philippine Peso,P-2
+O-5,Philippine Peso,P-4
+O-6,Philippine Peso,P-4

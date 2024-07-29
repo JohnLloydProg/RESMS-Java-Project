@@ -1,0 +1,20 @@
+P-1,1,1,1670000.0,200.0,Red House
+P-2,2,1,2250000.0,300.0,Blue House
+P-3,3,1,2250000.0,300.0,Blue House
+P-4,4,1,2250000.0,300.0,Blue House
+P-5,5,1,5670500.0,350.0,Near entrance & has garage
+P-6,6,1,1.5899999E7,500.0,Large area & clean finish & modern look
+P-7,7,1,1.356785E7,456.5,Big red house
+P-8,8,1,1.275E7,425.0,Medium blue house
+P-9,9,1,8500000.0,367.9,Small red house
+P-10,10,1,9675000.0,324.54,Yellow house
+P-11,11,1,1.154050075E7,327.45,Bigger yellow house
+P-12,12,1,1.3785321E7,348.54,Artist small house
+P-13,13,1,1.234354065E7,478.32,Large area but no looks
+P-14,14,1,1.3786439E7,375.32,Cool house
+P-15,15,1,5678321.0,245.34,Small house
+P-16,16,1,2560000.0,213.45,Hello
+P-17,17,1,4563000.0,265.76,Good neighborhood
+P-18,18,1,7890456.0,289.65,Larger area
+P-19,19,1,9750000.0,323.56,Fun neighborhood
+P-20,20,1,6578432.0,231.8,Small but great design

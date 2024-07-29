@@ -17,7 +17,7 @@ public class PropertyButton extends javax.swing.JButton{
     public PropertyButton(Property property) {
         super();
         this.property = property;
-        this.setText("L " + this.property.getLot());
+        this.setText("L " + this.property.getLot() + " B " + this.property.getBlock());
         if (this.property.getOwner() == null && this.property.getReservation() == null) {
             this.setBackground(Color.green);
         }else {
@@ -30,7 +30,8 @@ public class PropertyButton extends javax.swing.JButton{
     }
     
     public void checkFilter(Filter filter) {
-        if (filter.checkSize(this.property.getSize()) && filter.checkPrice(this.property.getSRP()) && filter.checkBlock(this.property.getBlock()) && filter.checkState(this.property.getReservation(), this.property.getOwner())) {
+        if (filter.checkMinSize(this.property.getSize()) && filter.checkMaxSize(this.property.getSize()) && filter.checkMinPrice(this.property.getSRP()) 
+                && filter.checkMaxPrice(this.property.getSRP()) && filter.checkBlock(this.property.getBlock()) && filter.checkState(this.property.getReservation(), this.property.getOwner())) {
             this.setBackground(Color.green);
         }else {
             this.setBackground(Color.red);

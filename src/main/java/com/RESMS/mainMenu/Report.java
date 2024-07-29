@@ -22,7 +22,7 @@ public class Report extends javax.swing.JFrame {
     public Report() {
         initComponents();
         this.getContentPane().setBackground(new Color(255, 255, 255));
-        this.employee = Read.getEmployee(1);
+        this.employee = Employee.getUser();
         if (this.employee.getCredentials().contentEquals("Agent")) {
             this.agentTransactionReport(this.employee);
         }else {
@@ -124,7 +124,7 @@ public class Report extends javax.swing.JFrame {
         saveBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(620, 720));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));

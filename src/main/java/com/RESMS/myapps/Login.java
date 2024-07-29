@@ -262,6 +262,7 @@ public class Login extends javax.swing.JFrame {
         for(Employee employee : employees){     
             if(username.equals(employee.getUserName()) && password.equals(employee.getPassword())){
                     isAuthenticated = true;
+                    Employee.setUser(employee);
                     if ("Admin".equals(employee.getCredentials())) {
                         AdminMain newForm = new AdminMain(); 
                         newForm.setVisible(true);
