@@ -4,6 +4,7 @@ package com.RESMS.myapps;
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Employee;
 import com.RESMS.mainMenu.MainMenu;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -264,7 +265,7 @@ public class Login extends javax.swing.JFrame {
                         AdminMain newForm = new AdminMain(); 
                         newForm.setVisible(true);
                     } else {
-                        AdminMain newForm = new AdminMain(); 
+                        MenuFrame newForm = new MenuFrame(); 
                         newForm.setVisible(true);
                     }
 

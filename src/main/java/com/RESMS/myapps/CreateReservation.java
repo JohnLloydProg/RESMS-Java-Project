@@ -8,6 +8,7 @@ import com.RESMS.libs.fileSystem.Add;
 import com.RESMS.libs.fileSystem.Read;
 import com.RESMS.libs.object.Buyer;
 import com.RESMS.libs.object.Reservation;
+import com.RESMS.mainMenu.MenuFrame;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -42,6 +43,14 @@ public class CreateReservation extends javax.swing.JFrame {
     }    
     public CreateReservation() {
         initComponents();
+        SetProperties();
+    }
+    
+    public void SetProperties(){
+        ArrayList<Buyer> buyers = Read.getBuyers();
+        for(Buyer buyer : buyers){
+            BuyerComboBox.addItem(buyer.getFirstName() + " " + buyer.getLastName());
+        }
     }
    
     /**
@@ -220,7 +229,6 @@ public class CreateReservation extends javax.swing.JFrame {
         BuyerJLaber.setText("Buyer");
         BuyerJLaber.setPreferredSize(new java.awt.Dimension(1070, 35));
 
-        BuyerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "John Doe" }));
         BuyerComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuyerComboBoxActionPerformed(evt);
@@ -370,6 +378,9 @@ public class CreateReservation extends javax.swing.JFrame {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        MenuFrame newForm = new MenuFrame(); 
+        newForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void ManageBuyerButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageBuyerButtonMouseEntered
@@ -401,6 +412,53 @@ public class CreateReservation extends javax.swing.JFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
+        Add add = new Add();
+        String value = BuyerComboBox.getSelectedItem().toString();
+        String checkId = "";
+        
+            if (DueDate.getText().isEmpty() || Price.getText().isEmpty()) {
+               NotificationLabel.setText("Due Date and Price cannot be empty");
+               return;
+            }
+            
+            ArrayList<Buyer> buyers = Read.getBuyers();
+            
+            //get id of chosen buyer
+            for(Buyer checkBuyer : buyers){
+                String buyerName = (checkBuyer.getFirstName() + " " + checkBuyer.getLastName()).trim();
+                if(buyerName.equalsIgnoreCase(value)){
+                    checkId = checkBuyer.getId();
+                    System.out.println("Buyer ID: " + checkId);
+                    break;
+                }
+            }
+            
+            if (checkId.isEmpty()) {
+                System.out.println(value);
+                NotificationLabel.setText("Buyer not found");
+                return;
+            }
+            
+            try {
+                // Extract numeric ID from the buyer ID string
+                String id = checkId.replaceAll("[^0-9]", "");
+                System.out.println("Numeric ID: " + id);
+
+                // Create a new Reservation object
+                Reservation newReservation = new Reservation(
+                    Read.getBuyer(Integer.parseInt(id)), 
+                    Double.parseDouble(Price.getText()),
+                    DueDate.getText()
+                );
+
+                // Add the reservation
+                add.item(newReservation);
+                NotificationLabel.setText("Successfully added a reservation!");
+            } catch (NumberFormatException ex) {
+                // Handle potential NumberFormatException
+                NotificationLabel.setText("Invalid ID or Price format");
+                ex.printStackTrace();
+            }
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     /**
@@ -428,6 +486,54 @@ public class CreateReservation extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CreateReservation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

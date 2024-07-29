@@ -4,10 +4,25 @@
  */
 package com.RESMS.myapps;
 
+import com.RESMS.libs.fileSystem.Read;
+import com.RESMS.libs.object.Buyer;
+import com.RESMS.libs.object.Cash;
+import com.RESMS.libs.object.Employee;
+import com.RESMS.libs.object.IData;
+import com.RESMS.libs.object.Installment;
+import com.RESMS.libs.object.Offer;
+import com.RESMS.libs.object.PaymentMethod;
+import com.RESMS.libs.object.Property;
+import com.RESMS.libs.object.Reservation;
+import com.RESMS.libs.object.Transaction;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -35,8 +50,51 @@ public class AdminMain extends javax.swing.JFrame {
         g2d.dispose();
         }
     }
+    
     public AdminMain() {
         initComponents();
+    }
+    
+    public void generateCSVReport(ArrayList<IData> items, String filePath){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                // Write the header
+                if (!items.isEmpty()) {
+                    writeHeader(writer, items.get(0));
+                }
+
+                // Write each item in CSV format
+                for (IData item : items) {
+                    writer.write(item.toCSV());
+                    writer.newLine();
+                }
+
+                System.out.println("CSV report generated successfully.");
+            } catch (IOException e) {
+                System.out.println("An error occurred while generating the CSV report.");
+                e.printStackTrace();
+            }       
+    }
+    
+    private void writeHeader(BufferedWriter writer, IData item) throws IOException {
+        if (item instanceof Employee) {
+            writer.write("Employee ID, Last Name, First Name, Credentials, Password");
+        } else if (item instanceof Buyer) {
+            writer.write("Buyer ID, Last Name, First Name");
+        } else if (item instanceof Property) {
+            writer.write("Property ID, Owner, Lot, Block, SRP, Size, Description, Reservation");
+        } else if (item instanceof Reservation) {
+            writer.write("Reservation ID, Buyer ID, Price, Due Date");
+        } else if (item instanceof Offer) {
+            writer.write("Offer ID, Discount, Currency, Property ID");
+        } else if (item instanceof Transaction) {
+            writer.write("Transaction ID, Agent ID, Buyer ID, Offer ID");
+        } else if (item instanceof Cash) {
+            writer.write("Cash Payment ID, Final Price");
+        } else if (item instanceof Installment) {
+            writer.write("Installment Payment ID of Total Amount with Downpayment and Interest Rate for over Number of Years");
+        }
+        // Add headers for other classes similarly
+        writer.newLine();
     }
 
     /**
@@ -213,6 +271,9 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void GenerateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateReportButtonActionPerformed
         // TODO add your handling code here:
+        ArrayList<IData> allData = new ArrayList<>();
+
+        
         
     }//GEN-LAST:event_GenerateReportButtonActionPerformed
 
@@ -241,6 +302,54 @@ public class AdminMain extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
