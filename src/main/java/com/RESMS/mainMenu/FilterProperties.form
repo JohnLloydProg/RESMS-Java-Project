@@ -72,14 +72,14 @@
                       <Component id="blockField" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="92" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="maxSizeField" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="maxSizeField" pref="124" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="maxPriceField" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                      <Component id="maxPriceField" alignment="0" pref="124" max="32767" attributes="0"/>
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="availableBtn" min="-2" max="-2" attributes="0"/>
-                      <Component id="reservedBtn" min="-2" max="-2" attributes="0"/>
-                      <Component id="soldBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="availableBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="reservedBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="soldBtn" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>

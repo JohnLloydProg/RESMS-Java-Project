@@ -23,7 +23,7 @@ P-22,2,2,3891963.0,260.0,A few friends
 P-23,3,2,6476637.0,685.0,fun neighborhood
 P-24,4,2,5614689.0,268.0,Slightly larger yellow house
 P-25,5,2,7274289.0,740.0,A bad friend nearby
-P-26,6,2,8010736.0,245.0,smaller purple house
+P-26,B-1,6,2,8010736.0,245.0,smaller purple house
 P-27,7,2,9096418.0,154.0,A few friends
 P-28,8,2,2436579.0,491.0,A few friends
 P-29,9,2,6140338.0,202.0,A bad friend nearby

@@ -5,3 +5,4 @@ B-4,Avila,Lance Gabriel
 B-5,Cruz,Audrize ShemKeane
 B-6,Kamado,Nezuko
 B-7,Kibutsuji,Muzan
+B-8,Agaton,Lee Archelaus

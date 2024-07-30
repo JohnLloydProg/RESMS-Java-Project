@@ -330,7 +330,7 @@ public class CreateOffer extends javax.swing.JFrame {
         ModeOfPaymentForm.add(filler2);
 
         NumberOfYearsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        NumberOfYearsLabel.setText("Number of Years");
+        NumberOfYearsLabel.setText("Number of Payments");
         ModeOfPaymentForm.add(NumberOfYearsLabel);
 
         Interest.setMinimumSize(new java.awt.Dimension(220, 22));
