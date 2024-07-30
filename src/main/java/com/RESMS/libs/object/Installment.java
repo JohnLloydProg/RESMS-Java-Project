@@ -42,7 +42,7 @@ public class Installment implements PaymentMethod {
 
     @Override
     public String getPaymentDetails() {
-        return "Installment payment of $" + totalAmount + " with down payment of $" + downPayment + " and interest rate of " + interest + "% paid " + numberOfPayments + " times";
+        return "Installment payment of $" + totalAmount + " with down payment of $" + downPayment + " and interest rate of " + (interest * 100) + "% paid " + numberOfPayments + " times";
     }
     
     @Override

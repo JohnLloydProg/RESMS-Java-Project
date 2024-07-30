@@ -220,9 +220,6 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
-        MenuFrame newForm = new MenuFrame(); 
-        newForm.setVisible(true);
-        dispose();
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void RegisterNewAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterNewAgentButtonActionPerformed
