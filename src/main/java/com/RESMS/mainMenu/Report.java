@@ -28,13 +28,18 @@ public class Report extends javax.swing.JFrame {
     public void generateCSVReport(ArrayList<IData> items, String filePath) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
                 Class<?> currentClass = null;
-                ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
+                ArrayList<Cash> cash = new ArrayList<>();
+                ArrayList<Installment> installment = new ArrayList<>();
 
                 // for non-offer items; get payment method
                 for (IData item : items) {
                     if (item instanceof Offer) {
                         Offer offer = (Offer) item;
-                        paymentMethods.add(offer.getPaymentMethod());
+                        if (offer.getPaymentMethod() instanceof Cash) {
+                            cash.add((Cash) offer.getPaymentMethod());
+                        }else {
+                            installment.add((Installment) offer.getPaymentMethod());
+                        }
                         if (currentClass == null || !item.getClass().equals(currentClass)) {
                             writer.newLine();
                             writeHeader(writer, item);
@@ -48,22 +53,52 @@ public class Report extends javax.swing.JFrame {
                             writeHeader(writer, item);
                             currentClass = item.getClass();
                         }
-                        writer.write(item.toCSV());
+                        if (item instanceof Property) {
+                            Property propertyData = (Property) item;
+                            String csvData = propertyData.getId() + ",";
+                            if (propertyData.getOwner() != null) {
+                                csvData += propertyData.getOwner().getId() + ",";
+                            }else {
+                                csvData += "null,";
+                            }
+                            csvData += propertyData.getLot() + "," + propertyData.getBlock() + "," + propertyData.getSRP() + "," + propertyData.getSize() + "," + propertyData.getDescription() + ",";
+                            if (propertyData.getReservation() != null) {
+                                csvData += propertyData.getReservation().getId();
+                            }else {
+                                csvData += "null";
+                            }
+                            writer.write(csvData);
+                        }else {
+                            writer.write(item.toCSV());
+                        }
                         writer.newLine();
                     }
                 }
-
-                // for payment method
-                if (!paymentMethods.isEmpty()) {
+                
+                if (!cash.isEmpty()) {
                     writer.newLine();
                     currentClass = null; // reset current class
-                    for (PaymentMethod paymentMethod : paymentMethods) {
-                        if (currentClass == null || !paymentMethod.getClass().equals(currentClass)) {
+                    for (Cash cashData : cash) {
+                        if (currentClass == null || !cashData.getClass().equals(currentClass)) {
                             writer.newLine();
-                            writeHeader(writer, paymentMethod);
-                            currentClass = paymentMethod.getClass();
+                            writeHeader(writer, cashData);
+                            currentClass = cashData.getClass();
                         }
-                        writer.write(paymentMethod.toCSV());
+                        writer.write(cashData.toCSV());
+                        writer.newLine();
+                    }
+                }
+                
+                if (!installment.isEmpty()) {
+                    writer.newLine();
+                    currentClass = null; // reset current class
+                    for (Installment installmentData : installment) {
+                        if (currentClass == null || !installmentData.getClass().equals(currentClass)) {
+                            writer.newLine();
+                            writeHeader(writer, installmentData);
+                            currentClass = installmentData.getClass();
+                        }
+                        writer.write(installmentData.toCSV());
                         writer.newLine();
                     }
                 }
@@ -91,7 +126,7 @@ public class Report extends javax.swing.JFrame {
             } else if (item instanceof Cash) {
                 writer.write("Cash Payment ID, Final Price");
             } else if (item instanceof Installment) {
-                writer.write("Installment Payment ID, Total Amount, Downpayment, Interest Rate, Number of Years");
+                writer.write("Installment Payment ID, Total Amount, Downpayment, Interest Rate, Number of Payments");
             }
             // Add headers for other classes similarly
             writer.newLine();
